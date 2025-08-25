@@ -1,0 +1,103 @@
+body {
+  margin: 0;
+  position: relative; /* 背景SVGの配置基準にする */
+
+  font-family: 'Roboto', sans-serif;
+  background-color: #2b3137; /* ダーク背景をbodyに適用 */
+}
+
+:root {
+  /* 背景SVGの色（必要に応じて変更）*/
+  --generic-bg-fill: #24292e;
+}
+
+header * {
+  box-sizing: border-box;
+}
+nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+header {
+  max-width: 1280px; /* 画面が広くてもここで打ち止め。GitHubもこのくらい */
+  margin: 0% auto; /* 左右中央揃え（autoでセンタリング） */
+  padding: 10px 16px; /* 端が詰まらないよう左右に16pxの余白 */
+  height: 56px; /* ヘッダーの高さ（要素を上下センターにしやすい） */
+  display: flex;
+  align-items: center; /* 子要素を“縦方向”に中央揃え（上下センター） */
+  justify-content: space-between; /* 両端に配置 */
+  background-color: #24292f;
+  color: aliceblue;
+}
+
+.header-left-group {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.header-nav ul {
+  display: flex; /* liを横並びにする */
+  list-style: none; /*箇条書きの点を消す*/
+  padding: 0; /* デフォルトのpaddingをリセット */
+  margin: 0; /* デフォルトのmarginをリセット */
+  gap: 16px; /* 項目間のスペースを追加 */
+}
+
+.header-nav a[href='./'] span {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-left: 8px;
+  vertical-align: middle;
+  border-top: 4px solid;
+  border-right: 4px solid transparent;
+  border-left: 4px solid transparent;
+}
+
+.sign_in_up {
+  display: flex;
+  align-items: center; /* リンク同士を垂直方向に中央揃え */
+  gap: 16px; /* 「サインイン」と「サインアップ」の間のスペースを追加 */
+}
+
+#sign_in {
+  padding: 7px 12px; /* 上下7px, 左右12pxの余白 */
+}
+
+#sign_up {
+  border: 1px solid white;
+  background-color: #24292f;
+  border-radius: 6px; /* 角を少し丸くする */
+  padding: 4px 10px; /* 上下4px, 左右10pxの余白 (ボーダーの太さ1pxを考慮) */
+}
+a {
+  color: white;
+  text-decoration: none;
+}
+
+#generic-bg {
+  position: absolute; /*position: relative;（body）に対して相対的な位置設定*/
+  top: 56px; /* ヘッダーの高さ分だけ下げる */
+  left: 0;
+  width: 100%;
+  z-index: -1; /* コンテンツの背面に配置 */
+  opacity: 0.15; /* 薄く表示して背景化 */
+}
+
+/* 取得したSVGには各pathにinlineのfillが付いているため、CSSで色を上書きする */
+#generic-bg path {
+  fill: var(--generic-bg-fill, #24292e) !important;
+}
+
+.main {
+  position: relative; /* 通常フローでレイアウトする */
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto; /* セクション自体を中央寄せ */
+  padding: 96px 16px; /* ヘッダー下の余白をしっかり確保 */
+  background: transparent; /* 背景はbodyと背面SVGに任せる */
+  min-height: 560px; /* ヒーロー領域の高さを確保して“空間”を作る */
+}
