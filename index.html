@@ -1,8 +1,41 @@
-<html>
+<!DOCTYPE html>
+<html lang="ja">
   <head>
-    <meta>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GitHub風トップページ</title>
+    <!-- 外部のCSSファイルを読み込む -->
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    
+    <!-- ヘッダー（ナビゲーションバー） -->
+    <header class="nav">
+      <div class="nav__left">
+        <!-- SVG形式のロゴ画像 -->
+        <img src="svg/btf-logo.svg" alt="ロゴ" class="nav__logo" />
+      </div>
+      <!-- メニュー（ナビゲーションリンク） -->
+      <nav class="nav__menu" id="menu">
+        <a href="#">製品</a>
+        <a href="#">ソリューション</a>
+        <a href="#">価格</a>
+      </nav>
+      <!-- スマホ用メニューボタン -->
+      <button class="nav__toggle" id="menuButton" aria-label="メニューを開閉">☰</button>
+    </header>
+
+    <!-- メインコンテンツ -->
+    <main class="main">
+      <h1>GitHub風ページのサンプル</h1>
+      <p>これは学習用のサンプルページです。</p>
+    </main>
+
+    <!-- フッター -->
+    <footer class="footer">
+      <p>© 2024 サンプル</p>
+    </footer>
+
+    <!-- JavaScriptファイルを読み込む（ES Modules） -->
+    <script type="module" src="main.js"></script>
   </body>
 </html>
