@@ -1,9 +1,8 @@
 body {
   margin: 0;
   position: relative; /* 背景SVGの配置基準にする */
-
   font-family: 'Roboto', sans-serif;
-  background-color: #2b3137; /* ダーク背景をbodyに適用 */
+  /*background: transparent; 背景はbodyと背面SVGに任せる */
 }
 
 :root {
@@ -93,11 +92,24 @@ a {
 }
 
 .main {
-  position: relative; /* 通常フローでレイアウトする */
-  max-width: 1280px;
-  width: 100%;
-  margin: 0 auto; /* セクション自体を中央寄せ */
+  position: relative;
+  max-width: 1200px;
+  margin: 0; /* セクション自体を中央寄せ */
   padding: 96px 16px; /* ヘッダー下の余白をしっかり確保 */
-  background: transparent; /* 背景はbodyと背面SVGに任せる */
   min-height: 560px; /* ヒーロー領域の高さを確保して“空間”を作る */
+  background-color: #2b3137;
+}
+.main::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+
+/*  background: transparent;  背景はbodyと背面SVGに任せる */
+
+.building {
+  display: block;
+  width: 100%;
+  height: 20vm;
+  color: white;
 }
