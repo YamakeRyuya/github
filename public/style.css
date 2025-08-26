@@ -1,48 +1,42 @@
 body {
-  margin: 0;
-  position: relative; /* 背景SVGの配置基準にする */
-  font-family: 'Roboto', sans-serif;
-  /*background: transparent; 背景はbodyと背面SVGに任せる */
-}
-
-:root {
-  /* 背景SVGの色（必要に応じて変更）*/
-  --generic-bg-fill: #24292e;
+  margin: 0; /* body要素が持つデフォルトの余白をなくす */
+  font-family: 'Roboto', sans-serif; /* ページ全体の基本フォントを指定 */
 }
 
 header * {
-  box-sizing: border-box;
+  box-sizing: border-box; /* paddingとborderを要素の幅と高さに含めるようにする */
 }
+
 nav ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
+  margin: 0; /* ul要素が持つデフォルトの余白をなくす */
+  padding: 0; /* ul要素が持つデフォルトの内側余白をなくす */
+  list-style: none; /* リストの先頭にある点（マーカー）を消す */
 }
 
 header {
   max-width: 1280px; /* 画面が広くてもここで打ち止め。GitHubもこのくらい */
   margin: 0% auto; /* 左右中央揃え（autoでセンタリング） */
   padding: 10px 16px; /* 端が詰まらないよう左右に16pxの余白 */
-  height: 56px; /* ヘッダーの高さ（要素を上下センターにしやすい） */
-  display: flex;
-  align-items: center; /* 子要素を“縦方向”に中央揃え（上下センター） */
-  justify-content: space-between; /* 両端に配置 */
-  background-color: #24292f;
-  color: aliceblue;
+  height: 56px; /* ヘッダーの高さを56pxに固定 */
+  display: flex; /* 子要素を横並びにするためのフレックスボックスレイアウトを適用 */
+  align-items: center; /* 子要素を垂直方向の中央に揃える */
+  justify-content: space-between; /* 子要素を両端に配置する */
+  background-color: #24292f; /* 背景色を濃いグレーに設定 */
+  color: aliceblue; /* 文字色をアリスブルー（白に近い青）に設定 */
 }
 
 .header-left-group {
-  display: flex;
-  align-items: center;
-  gap: 16px;
+  display: flex; /* 子要素を横並びにする */
+  align-items: center; /* 子要素を垂直方向の中央に揃える */
+  gap: 16px; /* 子要素間のスペースを16pxに設定 */
 }
 
 .header-nav ul {
-  display: flex; /* liを横並びにする */
-  list-style: none; /*箇条書きの点を消す*/
-  padding: 0; /* デフォルトのpaddingをリセット */
-  margin: 0; /* デフォルトのmarginをリセット */
-  gap: 16px; /* 項目間のスペースを追加 */
+  display: flex; /* li要素を横並びにする */
+  list-style: none; /* リストの先頭にある点（マーカー）を消す */
+  padding: 0; /* デフォルトの内側余白をリセット */
+  margin: 0; /* デフォルトの外側余白をリセット */
+  gap: 16px; /* 各リスト項目間のスペースを16pxに設定 */
 }
 
 .header-nav a[href='./'] span {
@@ -57,52 +51,44 @@ header {
 }
 
 .sign_in_up {
-  display: flex;
-  align-items: center; /* リンク同士を垂直方向に中央揃え */
-  gap: 16px; /* 「サインイン」と「サインアップ」の間のスペースを追加 */
+  display: flex; /* 子要素を横並びにする */
+  align-items: center; /* 子要素を垂直方向の中央に揃える */
+  gap: 16px; /* 「サインイン」と「サインアップ」の間のスペースを16pxに設定 */
 }
 
 #sign_in {
-  padding: 7px 12px; /* 上下7px, 左右12pxの余白 */
+  padding: 7px 12px; /* 内側の余白を上下に7px, 左右に12px設定 */
 }
 
 #sign_up {
-  border: 1px solid white;
-  background-color: #24292f;
+  border: 1px solid white; /* 1pxの白い実線の枠線 */
+  background-color: #24292f; /* 背景色をヘッダーと同じ濃いグレーに設定 */
   border-radius: 6px; /* 角を少し丸くする */
-  padding: 4px 10px; /* 上下4px, 左右10pxの余白 (ボーダーの太さ1pxを考慮) */
+  padding: 4px 10px; /* 内側の余白を上下に4px, 左右に10px設定 */
 }
 a {
-  color: white;
-  text-decoration: none;
-}
-
-#generic-bg {
-  position: absolute; /*position: relative;（body）に対して相対的な位置設定*/
-  top: 56px; /* ヘッダーの高さ分だけ下げる */
-  left: 0;
-  width: 100%;
-  z-index: -1; /* コンテンツの背面に配置 */
-  opacity: 0.15; /* 薄く表示して背景化 */
-}
-
-/* 取得したSVGには各pathにinlineのfillが付いているため、CSSで色を上書きする */
-#generic-bg path {
-  fill: var(--generic-bg-fill, #24292e) !important;
+  color: white; /* リンクの文字色を白に設定 */
+  text-decoration: none; /* リンクの下線を消す */
 }
 
 .main {
-  position: relative;
-  max-width: 1200px;
-  margin: 0; /* セクション自体を中央寄せ */
-  padding: 96px 16px; /* ヘッダー下の余白をしっかり確保 */
-  min-height: 560px; /* ヒーロー領域の高さを確保して“空間”を作る */
-  background-color: #2b3137;
+  position: relative; /* 疑似要素(::before)の位置の基準にする */
+  max-width: 1200px; /* 最大幅を1200pxに制限 */
+  margin: 0 auto; /* セクション自体を中央寄せ */
+  padding: 96px 16px; /* 内側の余白を上下に96px、左右に16px設定 */
+  min-height: 560px; /* 最小の高さを560pxに設定 */
+  background-color: #2b3137; /* 背景色を#2b3137に設定 */
+  overflow: hidden; /* はみ出した子要素（この場合は::before）を隠す */
 }
 .main::before {
-  content: '';
-  position: absolute;
-  inset: 0;
+  content: ''; /* 疑似要素を生成するために必須のプロパティ */
+  position: absolute; /* 親要素(.main)を基準に絶対位置で配置 */
+  inset: 0; /* top, right, bottom, left をすべて 0 にするショートハンド。親要素いっぱいに広がる */
+  background-color: white; /* パターンの色を白に設定 */
+  mask-image: url(../svg/simple-codelines.svg); /* SVG画像をマスクとして使用 */
+  -webkit-mask-image: url(../svg/simple-codelines.svg); /* SafariなどWebKit系ブラウザ用のマスク指定 */
+  opacity: 0.1; /* パターンの透明度を10%に設定して薄く表示 */
+  pointer-events: none; /* この要素がクリックなどの操作を妨げないようにする */
 }
 
 /*  background: transparent;  背景はbodyと背面SVGに任せる */
@@ -110,6 +96,6 @@ a {
 .building {
   display: block;
   width: 100%;
-  height: 20vm;
+  height: 20vh; /* 高さをビューポート（表示領域）の高さの20%に設定 */
   color: white;
 }
