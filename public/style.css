@@ -21,10 +21,9 @@ nav ul {
 }
 
 header {
-  max-width: 1280px; /* 画面が広くてもここで打ち止め。GitHubもこのくらい */
-  margin: 0% auto; /* 左右中央揃え（autoでセンタリング） */
-  padding: 10px 16px; /* 端が詰まらないよう左右に16pxの余白 */
-  height: 54px; /* ヘッダーの高さを56pxに固定 */
+  width: 100%; /* ヘッダー全体を画面幅いっぱいに広げる */
+  padding: 8px 16px; /* 上下8px・左右16pxの内側余白を付ける */
+  height: 54px; /* ヘッダーの高さを固定 */
   display: flex; /* 子要素を横並びにするためのフレックスボックスレイアウトを適用 */
   align-items: center; /* 子要素を垂直方向の中央に揃える */
   justify-content: space-between; /* 子要素を両端に配置する */
@@ -43,18 +42,15 @@ header {
   list-style: none; /* リストの先頭にある点（マーカー）を消す */
   padding: 0; /* デフォルトの内側余白をリセット */
   margin: 0; /* デフォルトの外側余白をリセット */
-  gap: 20px; /* 各リスト項目間のスペースを16pxに設定 */
+  gap: 20px; /* 各リスト項目間のスペースを20pxに設定 */
   align-items: center; /* リンク内の要素を垂直方向の中央に揃える */
 }
-.header-nav a[href='./'] span {
-  display: inline-block;
-  width: 0;
-  height: 0;
-  margin-left: 8px;
-  vertical-align: middle;
-  border-top: 4px solid;
-  border-right: 4px solid transparent;
-  border-left: 4px solid transparent;
+
+.nav-triangle {
+  width: 10px; /* 三角形アイコンの幅 */
+  height: 6px; /* 三角形アイコンの高さ */
+  margin-left: 4px; /* 文字との間隔 */
+  vertical-align: middle; /* テキストと縦位置を合わせる */
 }
 
 .sign_in_up {
