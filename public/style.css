@@ -47,19 +47,21 @@ header {
 }
 
 .triangle-icon {
-  /* アイコンの幅と高さを指定します。これが無いと表示されません。 */
   width: 12px;
   height: 12px;
-  /* fillは図形の内側の色、strokeは線の色です。今回は線だけ描画します。 */
   fill: none; /* 塗りつぶしを無しに設定 */
-  stroke: currentColor; /* 親要素(<a>タグ)の文字色を継承します。今回は白になります。 */
-  stroke-width: 2; /* 線の太さを指定 */
+  stroke-width: 1; /* 線の太さを指定 */
   stroke-linecap: round; /* 線の端を丸くして、見た目を滑らかにします */
   stroke-linejoin: round; /* 線の角を丸くします */
   vertical-align: middle; /* テキストの真ん中にアイコンが来るように調整します */
-  width: 12px;
-  height: 12px;
+  gap: 4px; /* アイコンとテキストの間に4pxのスペースを追加 */
+  stroke: rgb(182, 177, 177); /* 線の色を白に設定 */
+
+  /* アイコンの幅と高さを指定します。これが無いと表示されません。 */
+
+  /* fillは図形の内側の色、strokeは線の色です。今回は線だけ描画します。 */
 }
+
 .sign_in_up {
   display: flex;
   gap: 16px;
