@@ -34,13 +34,13 @@ header {
 .header-left-group {
   display: flex; /* 子要素を横並びにする */
   align-items: center; /* 子要素を垂直方向の中央に揃える */
-  gap: 20px; /* 子要素間のスペースを16pxに設定 */
+  gap: 30px; /* 子要素間のスペースを30pxに設定 */
 }
 
 .header-nav ul {
   display: flex; /* li要素を横並びにする */
   list-style: none; /* リストの先頭にある点（マーカー）を消す */
-  padding: auto; /* デフォルトの内側余白をリセット */
+  padding: 0; /* デフォルトの内側余白をリセット */
   margin: 0; /* デフォルトの外側余白をリセット */
   gap: 16px; /*各リスト項目間のスペースを20pxに設定*/
   align-items: center; /* リンク内の要素を垂直方向の中央に揃える */
@@ -90,4 +90,30 @@ a {
   overflow: hidden; /* はみ出した子要素（この場合は::before）を隠す */
   background-color: #2b3137; /* 背景色を#2b3137に設定 */
   background-image: url(./svg/simple-codelines.svg); /* SVG画像使用 */
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  max-height: calc(
+    100vh - 54px
+  ); /* 画面の高さからヘッダーの高さを引いた値を最大高さに設定 */
+}
+
+.main-github-logo {
+  width: 48px; /* ロゴの幅を48pxに設定 */
+  height: 48px; /* ロゴの高さを48pxに設定 */
+  margin: 0px auto; /* セクション自体を中央寄せ */
+  fill: white; /* GitHubロゴの色を白に設定 */
+  display: flex;
+  padding: 0%;
+}
+.main div {
+  align-items: center;
+  padding-right: ;
+}
+.main h1 {
+  padding: 0px;
+  color: aliceblue;
+  text-align: center;
+  font-size: 40px;
+  font-weight: 600;
+  margin-top: 16px;
 }
