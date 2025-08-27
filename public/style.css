@@ -54,7 +54,6 @@ header {
   stroke-linecap: round; /* 線の端を丸くして、見た目を滑らかにします */
   stroke-linejoin: round; /* 線の角を丸くします */
   vertical-align: middle; /* テキストの真ん中にアイコンが来るように調整します */
-  gap: 4px; /* アイコンとテキストの間に4pxのスペースを追加 */
   stroke: rgb(182, 177, 177); /* 線の色を白に設定 */
 
   /* アイコンの幅と高さを指定します。これが無いと表示されません。 */
@@ -105,9 +104,9 @@ a {
   display: flex;
   padding: 0%;
 }
-.main div {
+.main-div {
   align-items: center;
-  padding-right: ;
+  color: aliceblue;
 }
 .main h1 {
   padding: 0px;
