@@ -22,7 +22,7 @@ nav ul {
 
 header {
   width: auto; /* ヘッダー全体を画面幅いっぱいに広げる */
-  padding: 8px 16px; /* 上下8px・左右16pxの内側余白を付ける */
+  padding: 8px 14px; /* 上下8px・左右14pxの内側余白を付ける */
   height: 54px; /* ヘッダーの高さを固定 */
   display: flex; /* 子要素を横並びにするためのフレックスボックスレイアウトを適用 */
   align-items: center; /* 子要素を垂直方向の中央に揃える */
@@ -34,25 +34,45 @@ header {
 .header-left-group {
   display: flex; /* 子要素を横並びにする */
   align-items: center; /* 子要素を垂直方向の中央に揃える */
-  gap: 16px; /* 子要素間のスペースを16pxに設定 */
+  gap: 20px; /* 子要素間のスペースを16pxに設定 */
 }
 
 .header-nav ul {
   display: flex; /* li要素を横並びにする */
   list-style: none; /* リストの先頭にある点（マーカー）を消す */
-  padding: 0; /* デフォルトの内側余白をリセット */
+  padding: auto; /* デフォルトの内側余白をリセット */
   margin: 0; /* デフォルトの外側余白をリセット */
-  gap: 20px; /* 各リスト項目間のスペースを20pxに設定 */
+  gap: 16px; /*各リスト項目間のスペースを20pxに設定*/
   align-items: center; /* リンク内の要素を垂直方向の中央に揃える */
 }
 
-.nav-triangle {
-  width: 10px; /* 三角形アイコンの幅 */
-  height: 6px; /* 三角形アイコンの高さ */
-  margin-left: 4px; /* 文字との間隔 */
-  vertical-align: middle; /* テキストと縦位置を合わせる */
+.triangle-icon {
+  /* アイコンの幅と高さを指定します。これが無いと表示されません。 */
+  width: 12px;
+  height: 12px;
+  /* fillは図形の内側の色、strokeは線の色です。今回は線だけ描画します。 */
+  fill: none; /* 塗りつぶしを無しに設定 */
+  stroke: currentColor; /* 親要素(<a>タグ)の文字色を継承します。今回は白になります。 */
+  stroke-width: 2; /* 線の太さを指定 */
+  stroke-linecap: round; /* 線の端を丸くして、見た目を滑らかにします */
+  stroke-linejoin: round; /* 線の角を丸くします */
+  vertical-align: middle; /* テキストの真ん中にアイコンが来るように調整します */
+  width: 12px;
+  height: 12px;
 }
-
+.sign_in_up {
+  display: flex;
+  gap: 16px;
+  margin-left: auto; /* 右寄せにする */
+  align-items: center; /* リンク内の要素を垂直方向の中央に揃える */
+}
+#sign_in {
+}
+#sign_up {
+  border: 1px solid white; /* 白い境界線を追加 */
+  border-radius: 4px; /* 角を丸くする */
+  padding: 4px 6px 6px 6px; /* 内側の余白を追加 */
+}
 a {
   color: white; /* リンクの文字色を白に設定 */
   text-decoration: none; /* リンクの下線を消す */
@@ -67,5 +87,5 @@ a {
   background-color: ; /* 背景色を#2b3137に設定 */
   overflow: hidden; /* はみ出した子要素（この場合は::before）を隠す */
   background-color: #2b3137; /* 背景色を#2b3137に設定 */
-  background-image: url(./svg/simple-codelines.svg); /* SVG画像をマスクとして使用 */
+  background-image: url(./svg/simple-codelines.svg); /* SVG画像使用 */
 }
