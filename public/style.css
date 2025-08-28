@@ -87,7 +87,7 @@ a {
   text-decoration: none; /* 下線を消す */
 }
 
-.main {
+main {
   position: relative; /* 基準 */
   width: 100%; /* 全幅 */
   min-height: max(
@@ -104,12 +104,13 @@ a {
   background-image: url(./svg/simple-codelines.svg); /* 背景画像 */
   background-attachment: fixed; /* 固定 */
   background-repeat: no-repeat; /* 繰返なし */
+  margin-bottom: 1rem;
 }
 
 .main-github-logo {
-  width: 48px; /* ロゴ幅 */
-  height: 48px; /* ロゴ高 */
-  margin: 0 auto; /* 中央寄せ */
+  width: 3rem; /* ロゴ幅 */
+  height: 3rem; /* ロゴ高 */
+  margin: 1rem auto; /* 中央寄せ */
   fill: white; /* ロゴ色 */
   display: block; /* レイアウト安定化 */
 }
@@ -122,9 +123,10 @@ a {
   text-align: center; /* テキスト中央 */
   color: var(--color-text); /* 文字色 */
   gap: 12px; /* 要素間隔 */
+  transform: translateY(-1.5rem);
 }
 
-.main h1 {
+main h1 {
   margin: 0; /* 余白リセット */
   font-size: 2rem; /* サイズ */
   font-weight: 600; /* 太さ */
@@ -133,9 +135,6 @@ a {
   color: var(--color-text); /* 色 */
 }
 
-/* p が下に落ちる原因は2つ */
-/* 1) セレクタ誤り: 'main-div p' は存在せず、'.main-div p' が正しい */
-/* 2) 無効な指定: 'display: absolute' は存在せず、position系の指定と混同 */
 .main-div p {
   margin: 0; /* 余白0 */
   line-height: 1.8; /* 行間 */
@@ -152,4 +151,24 @@ a {
   padding: 0.9rem 1.5rem 1.1rem;
   text-align: center;
   line-height: 1rem;
+}
+
+.building {
+  margin: ;
+  height: max-content;
+  background: linear-gradient(to right, #9e68a8 0%, #5274b5 100%);
+}
+
+.building-icon {
+  display: grid;
+  width: 2rem;
+  height: 2rem;
+}
+.building-text {
+  display: grid;
+  justify-content: center;
+  padding: 0 3.5rem;
+  float: right;
+  width: 36rem;
+  line-height: 1;
 }
