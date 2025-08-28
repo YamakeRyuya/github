@@ -1,11 +1,24 @@
+@charset "UTF-8";
+
+/* =========================
+   Base / Variables
+   ========================= */
+:root {
+  --header-height: 54px; /* ヘッダーの高さ */
+  --color-header-bg: #24292f; /* ヘッダー背景 */
+  --color-hero-bg: #2b3137; /* ヒーロー背景 */
+  --color-text: aliceblue; /* 明色テキスト */
+}
 body {
-  margin: 0; /* body要素のデフォルト余白をなくす */
-  font-family: 'Roboto', sans-serif; /* ページ全体の基本フォント */
+  margin: 0; /* 既定余白除去 */
+  font-family: 'Roboto', sans-serif; /* 基本フォント */
 }
 
-header * {
-  box-sizing: border-box; /* padding/borderを要素サイズに含める */
-}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+} /* 全要素に適用 */
 
 .github-logo {
   fill: white; /* GitHubロゴの色を白に */
@@ -21,13 +34,13 @@ nav ul {
 }
 
 header {
-  width: auto; /* ヘッダー全体を幅いっぱいに */
-  padding: 8px 14px; /* 上下8px・左右14pxの内側余白 */
-  height: 54px; /* ヘッダー高さ */
-  display: flex; /* 子要素を横並びに */
-  align-items: center; /* 子要素を縦中央揃え */
-  background-color: #24292f; /* 背景色: GitHub風のダークグレー */
-  color: aliceblue; /* 文字色 */
+  width: 100%; /* 全幅 */
+  padding: 12px 14px; /* 内側余白 */
+  height: var(--header-height); /* 高さ */
+  display: flex; /* 子要素横並び */
+  align-items: center; /* 縦中央 */
+  background-color: var(--color-header-bg); /* 背景色 */
+  color: var(--color-text); /* 文字色 */
 }
 
 .header-left-group {
@@ -75,19 +88,17 @@ a {
 }
 
 .main {
-  position: relative; /* 疑似要素などの基準にする */
-  width: 100%; /* 幅を100%に */
-  margin: 0 auto; /* セクションの中央寄せ */
-  padding: 96px 0px; /* 上下96pxの余白 */
-  min-height: 560px; /* 最小高さ */
-  overflow: hidden; /* はみ出しを隠す */
-  background-color: #2b3137; /* 背景色 */
-  background-image: url(./svg/simple-codelines.svg); /* SVG背景画像 */
-  background-attachment: fixed; /* 背景を固定 */
-  background-repeat: no-repeat; /* 背景の繰り返しなし */
-  max-height: calc(100vh - 54px); /* ビューポート高からヘッダー高を差し引く */
-  display: flex;
-  flex-direction: column;
+  position: relative; /* 基準 */
+  width: 100%; /* 全幅 */
+  min-height: calc(100vh - var(--header-height)); /* 最小高 */
+  margin: 0 auto; /* 中央 */
+  padding: 0; /* 余白0 */
+  display: flex; /* 縦積み */
+  flex-direction: column; /* 縦方向 */
+  background-color: var(--color-hero-bg); /* 背景色 */
+  background-image: url(./svg/simple-codelines.svg); /* 背景画像 */
+  background-attachment: fixed; /* 固定 */
+  background-repeat: no-repeat; /* 繰返なし */
 }
 
 .main-github-logo {
@@ -99,23 +110,29 @@ a {
 }
 
 .main-div {
-  display: flex; /* 縦方向に要素を並べる */
-  flex-direction: column; /* 縦並び */
-  align-items: center; /* 横方向の中央揃え */
-  color: aliceblue; /* テキスト色 */
-  text-align: center; /* テキスト中央寄せ */
+  display: flex; /* 縦積み */
+  flex-direction: column; /* 縦方向 */
+  align-items: center; /* 横中央 */
+  justify-content: center; /* 縦中央 */
+  text-align: center; /* テキスト中央 */
+  color: var(--color-text); /* 文字色 */
+  gap: 12px; /* 要素間隔 */
 }
 
 .main h1 {
-  padding: 0; /* 余白リセット */
-  color: aliceblue; /* 見出し色 */
-  text-align: center; /* 中央寄せ */
-  font-size: 40px; /* フォントサイズ */
+  margin: 0; /* 余白リセット */
+  font-size: 35px; /* サイズ */
   font-weight: 600; /* 太さ */
-  margin-top: 16px; /* 上余白 */
+  line-height: 1.25; /* 行高 */
+  text-align: center; /* 中央 */
+  color: var(--color-text); /* 色 */
 }
 
-main-div p {
-  display: absolute;
-  align-items: center;
+/* p が下に落ちる原因は2つ */
+/* 1) セレクタ誤り: 'main-div p' は存在せず、'.main-div p' が正しい */
+/* 2) 無効な指定: 'display: absolute' は存在せず、position系の指定と混同 */
+.main-div p {
+  margin: 0; /* 余白0 */
+  line-height: 1.8; /* 行間 */
+  max-width: 720px; /* 行長制御 */
 }
