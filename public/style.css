@@ -11,6 +11,7 @@
 }
 body {
   margin: 0; /* 既定余白除去 */
+  padding: 0;
   font-family: 'Roboto', sans-serif; /* 基本フォント */
 }
 
@@ -87,6 +88,16 @@ a {
   text-decoration: none; /* 下線を消す */
 }
 
+/* インラインリンクのパディングをリセット */
+.inline-link {
+  padding: 0;
+}
+
+/* インラインリンクのホバーでポインター表示 */
+.inline-link:hover {
+  cursor: pointer;
+}
+
 main {
   position: relative; /* 基準 */
   width: 100%; /* 全幅 */
@@ -102,8 +113,8 @@ main {
   align-items: center; /* 横中央（交差軸） */
   background-color: var(--color-hero-bg); /* 背景色 */
   background-image: url(./svg/simple-codelines.svg); /* 背景画像 */
-  background-attachment: fixed; /* 固定 */
   background-repeat: no-repeat; /* 繰返なし */
+  /* background-attachment: fixed; 固定 　スクロールしても背景は止まって見える */
 }
 
 .main-github-logo {
@@ -135,9 +146,11 @@ main h1 {
 }
 
 .main-div p {
+  color: #ffffff99;
   margin: 0; /* 余白0 */
   line-height: 1.5; /* 行間 */
   max-width: 90ch; /* 行長制御 */
+  text-align: justify; /* 両端揃え */
 }
 
 #button-in-main {
@@ -153,21 +166,37 @@ main h1 {
   margin-top: 1rem;
 }
 
+#button-in-main:hover {
+  cursor: pointer;
+}
+
 .building {
-  max-height: min(8rem, max-content); /*8rem分*/
+  display: flex; /*justify-content align-itemはflexかgridにしか効かない。text-aligin;center;が有効な場合も*/
+  align-items: flex-start; /* 先頭行をアイコン上端と揃える */
+  justify-content: center; /* 全体を中央寄せ */
+
   margin: 0;
-  padding: 0;
+  padding: 1.5rem 2rem;
   background: linear-gradient(to right, #9e68a8 0%, #5274b5 100%);
 }
 
+/* フレックスレイアウトなので clearfix は不要 */
+
 .building-icon {
-  display: flex;
+  display: block;
   width: 10rem;
-  height: 10rem;
+  height: auto; /* 画像の縦幅を内容に合わせて可変 */
+  margin-left: auto;
 }
 .building-text {
-  display: flex;
-  max-width: 100vh;
+  margin: auto; /* UAスタイルの段落マージンをリセット */
+  max-width: 65ch; /* 行幅をテキスト長で制御（vhは不適切） */
+  text-align: left; /* 左端を揃える */
+  color: white;
+  line-height: 1.4;
+}
+
+.open-source-project-business-use {
   color: aliceblue;
-  line-height: 1;
+  border-bottom: 1px solid grey;
 }
