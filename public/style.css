@@ -5,14 +5,27 @@
    ========================= */
 :root {
   --header-height: 5rem; /* ヘッダーの高さ */
-  --color-header-bg: #24292f; /* ヘッダー背景 */
-  --color-hero-bg: #2b3137; /* ヒーロー背景 */
-  --color-text: aliceblue; /* 明色テキスト */
+  --color-header-bg: #24292f; /* ヘッダー背景: GitHubダークグレー */
+  --color-hero-bg: #2b3137; /* ヒーロー背景: さらに濃いグレー */
+  --color-text: aliceblue; /* 明色テキスト: アリスブルー */
+  /* 色の共通変数（用途: 色名のメモ） */
+  --color-white: #ffffff; /* ベース: 純白 */
+  --color-link: #ffffff; /* リンク: 白（暗背景用） */
+  --color-stroke-muted: rgb(182, 177, 177); /* 線: 淡グレー */
+  --color-text-muted: #57606a; /* テキスト(弱調): スレートグレー */
+  --color-text-dark: #24292f; /* テキスト(濃色): ダークグレー */
+  --color-text-faded: #ffffff99; /* テキスト(弱白): 半透明の白(60%) */
+  --color-border-dark: #000000; /* 枠線(濃): 黒 */
+  --color-border-muted: grey; /* 枠線(淡): グレー */
+  --color-button-bg: rgb(52, 183, 89); /* ボタン背景: グリーン */
+  --color-button-text: azure; /* ボタン文字: アジュール(水色) */
+  --color-building-gradient-start: #9e68a8; /* グラデ開始: パープル */
+  --color-building-gradient-end: #5274b5; /* グラデ終了: ブルー */
 }
 body {
   margin: 0; /* 既定余白除去 */
   padding: 0;
-  font-family: 'Roboto', sans-serif; /* 基本フォント */
+  font-family: "Roboto", sans-serif; /* 基本フォント */
 }
 
 *,
@@ -22,7 +35,7 @@ body {
 } /* 全要素に適用 */
 
 .github-logo {
-  fill: white; /* GitHubロゴの色を白に */
+  fill: var(--color-white); /* #ffffff ロゴ白 */
   width: 32px; /* ロゴの幅を32pxに修正 */
   height: 32px; /* ロゴの高さを32pxに設定 */
   display: block; /* レイアウトの安定化のためブロック表示 */
@@ -40,8 +53,8 @@ header {
   height: var(--header-height); /* 高さ */
   display: flex; /* 子要素横並び */
   align-items: center; /* 縦中央 */
-  background-color: var(--color-header-bg); /* 背景色 */
-  color: var(--color-text); /* 文字色 */
+  background-color: var(--color-header-bg); /* #24292f ヘッダー背景 */
+  color: var(--color-text); /* #f0f8ff ヘッダー文字 */
 }
 
 .header-left-group {
@@ -67,7 +80,7 @@ header {
   stroke-linecap: round; /* 線端を丸く */
   stroke-linejoin: round; /* 線の角を丸く */
   vertical-align: middle; /* テキストの中央に揃える */
-  stroke: rgb(182, 177, 177); /* 線の色（薄いグレー） */
+  stroke: var(--color-stroke-muted); /* #b6b1b1 薄グレー線 */
 }
 
 .sign_in_up {
@@ -78,14 +91,21 @@ header {
 }
 
 #sign_up {
-  border: 1px solid white; /* 白い境界線 */
+  border: 1px solid var(--color-white); /* #ffffff 枠線白 */
   border-radius: 4px; /* 角丸 */
   padding: 4px 6px 6px 6px; /* 内側余白 */
 }
 
 a {
-  color: white; /* リンク文字色を白に */
+  color: var(--color-link); /* #ffffff リンク白 */
   text-decoration: none; /* 下線を消す */
+}
+
+/* 白背景のセクションでは通常色に（可読性確保） */
+/* 記事領域のリンクのみ“標準の青”に */
+article a {
+  color: #0969da;
+  text-decoration: none;
 }
 
 /* インラインリンクのパディングをリセット */
@@ -111,7 +131,7 @@ main {
   flex-direction: column; /* 縦方向 */
   justify-content: center; /* 縦中央（メイン軸） */
   align-items: center; /* 横中央（交差軸） */
-  background-color: var(--color-hero-bg); /* 背景色 */
+  background-color: var(--color-hero-bg); /* #2b3137 ヒーロー背景 */
   background-image: url(./svg/simple-codelines.svg); /* 背景画像 */
   background-repeat: no-repeat; /* 繰返なし */
   /* background-attachment: fixed; 固定 　スクロールしても背景は止まって見える */
@@ -121,7 +141,7 @@ main {
   width: 3rem; /* ロゴ幅 */
   height: 3rem; /* ロゴ高 */
   margin: 1rem auto; /* 中央寄せ */
-  fill: white; /* ロゴ色 */
+  fill: var(--color-white); /* #ffffff ロゴ白 */
   display: block; /* レイアウト安定化 */
 }
 
@@ -131,7 +151,7 @@ main {
   align-items: center; /* 横中央 */
   justify-content: center; /* 縦中央 */
   text-align: center; /* テキスト中央 */
-  color: var(--color-text); /* 文字色 */
+  color: var(--color-text); /* #f0f8ff メイン文字 */
   gap: 12px; /* 要素間隔 */
   transform: translateY(-1.5rem);
 }
@@ -146,7 +166,7 @@ main h1 {
 }
 
 .main-div p {
-  color: #ffffff99;
+  color: var(--color-text-faded); /* #ffffff99 薄白文字 */
   margin: 0; /* 余白0 */
   line-height: 1.5; /* 行間 */
   max-width: 90ch; /* 行長制御 */
@@ -154,11 +174,11 @@ main h1 {
 }
 
 #button-in-main {
-  background-color: rgb(52, 183, 89);
-  color: azure;
+  background-color: var(--color-button-bg); /* #34b759 ボタン背景 */
+  color: var(--color-button-text); /* #f0ffff ボタン文字 */
   font-size: 1rem;
   font-weight: 600;
-  border: 1px solid #000;
+  border: 1px solid var(--color-border-dark); /* #000000 ボタン枠 */
   border-radius: 0.375rem; /*6px*/
   padding: 0.9rem 1.5rem 1.1rem;
   text-align: center;
@@ -177,7 +197,12 @@ main h1 {
 
   margin: 0;
   padding: 1.5rem 2rem;
-  background: linear-gradient(to right, #9e68a8 0%, #5274b5 100%);
+  background: linear-gradient(
+    to right,
+    var(--color-building-gradient-start) 0%,
+    /* #9e68a8 左グラデ */ var(--color-building-gradient-end) 100%
+      /* #5274b5 右グラデ */
+  );
 }
 
 /* フレックスレイアウトなので clearfix は不要 */
@@ -192,11 +217,87 @@ main h1 {
   margin: auto; /* UAスタイルの段落マージンをリセット */
   max-width: 65ch; /* 行幅をテキスト長で制御（vhは不適切） */
   text-align: left; /* 左端を揃える */
-  color: white;
+  color: var(--color-white); /* #ffffff テキスト白 */
   line-height: 1.4;
 }
 
 .open-source-project-business-use {
-  color: aliceblue;
-  border-bottom: 1px solid grey;
+  color: var(--color-text); /* #f0f8ff 強調リンク */
+  border-bottom: 1px solid var(--color-border-muted); /* #808080 下線 */
+}
+
+.more-smarter {
+  /* 現在の見た目高さは維持しつつ可変に */
+  min-height: 14rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem; /* 要素間の間隔 */
+  padding: 2rem 0; /* 内側に余白を確保 */
+  margin: 2rem 0; /* セクション外側の縦余白のみ */
+}
+#more-smarter-top {
+  margin-top: 0; /* 大きすぎる上余白をリセット */
+  font-size: 12px;
+  color: var(--color-text-muted); /* #57606a 弱調テキスト */
+}
+
+#more-smarter-middle {
+  margin: 0%;
+  padding: 0%;
+  color: var(--color-text-dark); /* #24292f 見出し */
+}
+
+#more-smarter-second-middle {
+  color: #24292f;
+  font-weight: 300;
+  text-align: center;
+  /* 可変幅だが読みやすい行幅に制限 */
+  width: min(90%, 56ch);
+  color: var(--color-text-muted); /* #57606a 補足テキスト */
+  font-size: 20px;
+  line-height: 1.4;
+}
+
+#more-smarter-button {
+  background-color: var(--color-white); /* #ffffff ボタン背景 */
+  color: var(--color-text-dark); /* #24292f ボタン文字 */
+  border: 1px solid grey; /* #000000 ボタン枠 */
+  border-radius: 5px;
+  padding: 10px 1.5rem;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+#top-text-github {
+  color: var(--color-text-dark); /* #24292f 見出し */
+  font-weight: 400;
+}
+
+/* セクション間の区切り線 */
+/*.section-divider {
+  border: 0;
+  border-top: 1px solid var(--color-border-muted);
+  width: min(1100px, 90%);
+  margin: 2rem auto;} /* 上下に適度な余白 */
+
+.all-articles-class > a {
+  text-decoration: none;
+  color: var(--color-text-dark);
+}
+
+.all-articles-class {
+  height: 50vw;
+  display: flex;
+  margin-top: 2rem;
+}
+
+.three-articles {
+  width: 44ch;
+}
+
+.robot-icon {
+  max-width: 60vw;
+  max-height: 60vw;
 }
