@@ -297,9 +297,8 @@ main h1 {
   display: flex; /* 画像(左) + 記事(右) を横並び */
   flex-direction: row; /* 明示：横方向 */
   align-items: center; /* 縦軸を中央で揃える */
-  margin-top: 4rem;
   gap: 3rem;
-  margin-left: 4rem; /* セクション全体を右にずらす（以前は1rem） */
+  margin: 4rem auto auto 4rem;
 }
 
 .article-h {
@@ -329,21 +328,29 @@ main h1 {
 
 .three-articles article {
   position: relative; /* 疑似要素の配置基準 */
+  /* 疑似要素(16px) + 間隔(24px) 分の右余白を確保 */
+  padding-right: 40px;
+  padding: 1rem; /* 左余白 */
 }
-
 /* 記事の右側に矢印を表示（記事との間隔は24px） */
 .three-articles article::after {
   content: "";
   position: absolute;
   top: 50%;
-  right: -40px; /* 16px(アイコン幅) + 24px(間隔) */
+  /* アイコンを記事内右端に配置 */
+  right: 0;
   transform: translateY(-50%);
   width: 16px;
   height: 16px;
   background: url(./svg/arrow.svg) no-repeat center / 16px 16px;
+  margin-right: 1rem;
 }
 .robot-icon {
   vertical-align: middle; /* テキストの中央に揃える */
   width: 634px; /* アイコン幅 */
   height: 589px; /* アイコン高さ */
+}
+
+.article1:hover {
+  border: 1px solid var(--color-border-muted);
 }
