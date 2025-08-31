@@ -288,39 +288,62 @@ main h1 {
   color: var(--color-text-dark);
 }
 
+/* 3記事と左のSVGを横並びにするラッパー
+   - 高さ: 画像の高さに自動でフィット（固定値は撤去）
+   - 配置: 子要素同士の高さを揃えるため stretch
+   - 位置: セクション全体を右へオフセット */
 .all-articles-class {
-  height: 50vw;
-  display: flex;
+  /* height: 50vw; 旧: ビューポート幅依存の高さ → 撤去して画像に合わせる */
+  display: flex; /* 画像(左) + 記事(右) を横並び */
+  flex-direction: row; /* 明示：横方向 */
+  align-items: center; /* 縦軸を中央で揃える */
   margin-top: 4rem;
+  gap: 3rem;
+  margin-left: 4rem; /* セクション全体を右にずらす（以前は1rem） */
 }
 
+.article-h {
+  margin: 0;
+}
+
+.article-p {
+  width: 44ch;
+  font-size: 14px;
+  color: #000000; /*  */
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+/* 右カラム：3つの記事スタック
+   - 高さ: 左のSVGと同じ高さに合わせる
+   - 等間隔: 3記事を縦方向に均等配置
+   - 余白: 上下にパディングで読みやすく */
 .three-articles {
   width: 44ch;
+  display: flex; /* 3記事を縦積み */
+  flex-direction: column;
+  gap: 24px; /* 3記事の縦の間隔を固定で確保 */
+  /* height: 100%; 旧: 画像の高さに合わせて伸ばす → 中央揃えに変更したため不要 */
+  padding-block: 12px; /* 上下の余白（読みやすさ向上） */
 }
 
-/* 記事を横配置し、末尾疑似要素（::after）を右側アイコンに */
 .three-articles article {
-  display: grid;
-  grid-template-columns: 1fr auto; /* 本文 / アイコン */
-  column-gap: 1rem;
-  align-items: center; /* アイコンを縦中央に */
+  position: relative; /* 疑似要素の配置基準 */
 }
 
+/* 記事の右側に矢印を表示（記事との間隔は24px） */
 .three-articles article::after {
   content: "";
-  width: 40px;
-  height: 40px;
-  /* SVGを疑似要素に適用（maskで形抜き）*/
-  -webkit-mask: url(./svg/arrow.svg) no-repeat center / contain;
-  mask: url(./svg/arrow.svg) no-repeat center / contain;
-  background-color: #0969da; /* アイコン色 */
-  grid-column: 2;
-  grid-row: 1 / -1; /* 本文全体の縦中央に */
-  justify-self: center;
-  align-self: center;
+  position: absolute;
+  top: 50%;
+  right: -40px; /* 16px(アイコン幅) + 24px(間隔) */
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  background: url(./svg/arrow.svg) no-repeat center / 16px 16px;
 }
-
 .robot-icon {
-  max-width: 60vw;
-  max-height: 60vw;
+  vertical-align: middle; /* テキストの中央に揃える */
+  width: 634px; /* アイコン幅 */
+  height: 589px; /* アイコン高さ */
 }
