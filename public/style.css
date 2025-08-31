@@ -276,11 +276,12 @@ main h1 {
 }
 
 /* セクション間の区切り線 */
-/*.section-divider {
+.section-divider {
   border: 0;
   border-top: 1px solid var(--color-border-muted);
   width: min(1100px, 90%);
-  margin: 2rem auto;} /* 上下に適度な余白 */
+  margin: 2rem auto; /* 上下に適度な余白 */
+}
 
 .all-articles-class > a {
   text-decoration: none;
@@ -290,11 +291,33 @@ main h1 {
 .all-articles-class {
   height: 50vw;
   display: flex;
-  margin-top: 2rem;
+  margin-top: 4rem;
 }
 
 .three-articles {
   width: 44ch;
+}
+
+/* 記事を横配置し、末尾疑似要素（::after）を右側アイコンに */
+.three-articles article {
+  display: grid;
+  grid-template-columns: 1fr auto; /* 本文 / アイコン */
+  column-gap: 1rem;
+  align-items: center; /* アイコンを縦中央に */
+}
+
+.three-articles article::after {
+  content: "";
+  width: 40px;
+  height: 40px;
+  /* SVGを疑似要素に適用（maskで形抜き）*/
+  -webkit-mask: url(./svg/arrow.svg) no-repeat center / contain;
+  mask: url(./svg/arrow.svg) no-repeat center / contain;
+  background-color: #0969da; /* アイコン色 */
+  grid-column: 2;
+  grid-row: 1 / -1; /* 本文全体の縦中央に */
+  justify-self: center;
+  align-self: center;
 }
 
 .robot-icon {
