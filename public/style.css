@@ -25,6 +25,12 @@
   --article-border-width: 1px; /* 枠線の太さ */
   --article-arrow-size: 1rem; /* 矢印アイコンのサイズ */
   --article-arrow-gap: 1rem; /* 矢印と枠線の間隔 */
+  --article-arrow-color: var(--color-text-muted); /* 矢印の通常色 */
+  --article-arrow-color-hover: #0969da; /* ホバー時の矢印色 */
+  /* ロボット右上のホバー用オーバーレイ設定 */
+  --robot-overlay-size: clamp(6rem, 28%, 12rem); /* 画像サイズ */
+  --robot-overlay-offset-x: 0; /* 右方向の微調整(px, %, rem 可) */
+  --robot-overlay-offset-y: 0; /* 下方向の微調整(px, %, rem 可) */
 }
 body {
   margin: 0; /* 既定余白除去 */
@@ -341,6 +347,8 @@ main h1 {
   );
   /* ホバー時に枠線を出してもレイアウトがズレないように初期状態で透明の枠線を確保 */
   border: var(--article-border-width) solid transparent;
+  transition: box-shadow 0.25s ease, transform 0.25s ease,
+    border-color 0.2s ease;
 }
 /* 記事の右側に矢印を表示（記事との間隔は24px） */
 .three-articles article::after {
@@ -352,8 +360,19 @@ main h1 {
   transform: translateY(-50%);
   width: var(--article-arrow-size);
   height: var(--article-arrow-size);
-  background: url(./svg/arrow.svg) no-repeat center / var(--article-arrow-size)
+  /* マスクで形状を抜き、色は background-color で制御 */
+  background: none;
+  background-color: var(--article-arrow-color);
+  transition: background-color 0.2s ease;
+  -webkit-mask: url(./svg/arrow.svg) no-repeat center /
+    var(--article-arrow-size) var(--article-arrow-size);
+  mask: url(./svg/arrow.svg) no-repeat center / var(--article-arrow-size)
     var(--article-arrow-size);
+}
+
+/* hover で矢印色を #0969da に */
+.three-articles article:hover::after {
+  background-color: var(--article-arrow-color-hover);
 }
 .robot-icon {
   vertical-align: middle; /* テキストの中央に揃える */
@@ -364,8 +383,82 @@ main h1 {
   aspect-ratio: 634 / 589; /* レイアウトシフト抑制 */
 }
 
+.robot-figure {
+  position: relative; /* オーバーレイの基準 */
+  display: inline-block; /* 画像サイズにフィット */
+}
+
+/* ロボット右上に“浮き出す”オーバーレイ */
+.robot-figure::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(
+      var(--robot-overlay-offset-x),
+      calc(var(--robot-overlay-offset-y) - 8%)
+    )
+    scale(0.96);
+  width: var(--robot-overlay-size);
+  aspect-ratio: 1 / 1;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  opacity: 0; /* 初期は非表示 */
+  pointer-events: none; /* 操作は透過 */
+  z-index: 2;
+  transition: opacity 0.25s ease, transform 0.25s ease; /* ふわっと */
+  filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.18)); /* 浮遊感 */
+}
+
+/* 記事ごとにホバー時のオーバーレイを切り替え（:has 利用） */
+/* article1 → code、article2 → chaos、article3 → tools を表示 */
+.all-articles-class:has(.article1:hover) .robot-figure::after {
+  background-image: url(./svg/home-illo-team-code.svg);
+  opacity: 1;
+  transform: translate(
+      var(--robot-overlay-offset-x),
+      var(--robot-overlay-offset-y)
+    )
+    scale(1);
+}
+
+.all-articles-class:has(.article2:hover) .robot-figure::after {
+  background-image: url(./svg/home-illo-team-chaos.svg);
+  opacity: 1;
+  transform: translate(
+      var(--robot-overlay-offset-x),
+      var(--robot-overlay-offset-y)
+    )
+    scale(1);
+}
+
+.all-articles-class:has(.article3:hover) .robot-figure::after {
+  background-image: url(./svg/home-illo-team-tools.svg);
+  opacity: 1;
+  transform: translate(
+      var(--robot-overlay-offset-x),
+      var(--robot-overlay-offset-y)
+    )
+    scale(1);
+}
 .article1:hover,
 .article2:hover,
 .article3:hover {
-  border-color: var(--color-border-muted);
+  border-color: #cac7c7;
+  cursor: pointer;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+  fill: #0969da;
+}
+/* 上から順にarticle1 article2 article3をhoverしたときにrobot-iconの右上に位置するように浮き出す。 */
+
+/*public/public/svg/home-illo-team-code.svg
+public/public/svg/home-illo-team-chaos.svg
+public/public/svg/home-illo-team-tools.svg*/
+.robot-icon::after {
+  content: "";
+  position: absolute;
+  transform: translateY(-10px);
+  transition: transform 0.3s ease;
+  background: url(./svg/home-illo-team-code.svg) no-repeat center / 32px 32px;
 }
