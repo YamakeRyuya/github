@@ -21,6 +21,10 @@
   --color-button-text: azure; /* ボタン文字: アジュール(水色) */
   --color-building-gradient-start: #9e68a8; /* グラデ開始: パープル */
   --color-building-gradient-end: #5274b5; /* グラデ終了: ブルー */
+  /* 記事アイコン/枠線の調整用（矢印と枠の余白など） */
+  --article-border-width: 1px; /* 枠線の太さ */
+  --article-arrow-size: 1rem; /* 矢印アイコンのサイズ */
+  --article-arrow-gap: 1rem; /* 矢印と枠線の間隔 */
 }
 body {
   margin: 0; /* 既定余白除去 */
@@ -303,6 +307,7 @@ main h1 {
 
 .article-h {
   margin: 0;
+  font-size: 20px;
 }
 
 .article-p {
@@ -311,6 +316,7 @@ main h1 {
   color: #000000; /*  */
   line-height: 1.5;
   font-weight: 400;
+  margin-top: 0.5rem;
 }
 
 /* 右カラム：3つの記事スタック
@@ -318,20 +324,23 @@ main h1 {
    - 等間隔: 3記事を縦方向に均等配置
    - 余白: 上下にパディングで読みやすく */
 .three-articles {
-  width: 46ch;
+  width: 48ch;
   display: flex; /* 3記事を縦積み */
   flex-direction: column;
-  gap: 24px; /* 3記事の縦の間隔を固定で確保 */
+  gap: 0 1.5rem; /* 3記事の縦の間隔を固定で確保 */
   /* height: 100%; 旧: 画像の高さに合わせて伸ばす → 中央揃えに変更したため不要 */
   padding-block: 12px; /* 上下の余白（読みやすさ向上） */
 }
 
 .three-articles article {
   position: relative; /* 疑似要素の配置基準 */
-  /* 疑似要素(16px) + 間隔(24px) 分の右余白を確保 */
-  padding: 1rem 1rem 1rem 1rem;
+  padding: 1rem 1.5rem 1rem 1rem;
+  /* 矢印アイコン分 + 余白分だけ右パディングを追加して、テキストと重ならないようにする */
+  padding-right: calc(
+    1rem + var(--article-arrow-gap) + var(--article-arrow-size)
+  );
   /* ホバー時に枠線を出してもレイアウトがズレないように初期状態で透明の枠線を確保 */
-  border: 1px solid transparent;
+  border: var(--article-border-width) solid transparent;
 }
 /* 記事の右側に矢印を表示（記事との間隔は24px） */
 .three-articles article::after {
@@ -339,17 +348,20 @@ main h1 {
   position: absolute;
   top: 50%;
   /* アイコンを記事内右端に配置 */
-  right: 0;
+  right: var(--article-arrow-gap);
   transform: translateY(-50%);
-  width: 1rem;
-  height: 1rem;
-  background: url(./svg/arrow.svg) no-repeat center / 16px 16px;
-  margin-right: 0;
+  width: var(--article-arrow-size);
+  height: var(--article-arrow-size);
+  background: url(./svg/arrow.svg) no-repeat center / var(--article-arrow-size)
+    var(--article-arrow-size);
 }
 .robot-icon {
   vertical-align: middle; /* テキストの中央に揃える */
-  width: 634px; /* アイコン幅 */
-  height: 589px; /* アイコン高さ */
+  /* 相対値でレスポンシブに。最小16rem、ビューポートの45%、最大40rem */
+  width: clamp(16rem, 55vw, 40rem);
+  max-width: 100%;
+  height: auto; /* アスペクト比を維持して拡縮 */
+  aspect-ratio: 634 / 589; /* レイアウトシフト抑制 */
 }
 
 .article1:hover,
