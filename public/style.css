@@ -318,7 +318,7 @@ main h1 {
    - 等間隔: 3記事を縦方向に均等配置
    - 余白: 上下にパディングで読みやすく */
 .three-articles {
-  width: 44ch;
+  width: 46ch;
   display: flex; /* 3記事を縦積み */
   flex-direction: column;
   gap: 24px; /* 3記事の縦の間隔を固定で確保 */
@@ -329,8 +329,9 @@ main h1 {
 .three-articles article {
   position: relative; /* 疑似要素の配置基準 */
   /* 疑似要素(16px) + 間隔(24px) 分の右余白を確保 */
-  padding-right: 40px;
-  padding: 1rem; /* 左余白 */
+  padding: 1rem 1rem 1rem 1rem;
+  /* ホバー時に枠線を出してもレイアウトがズレないように初期状態で透明の枠線を確保 */
+  border: 1px solid transparent;
 }
 /* 記事の右側に矢印を表示（記事との間隔は24px） */
 .three-articles article::after {
@@ -340,10 +341,10 @@ main h1 {
   /* アイコンを記事内右端に配置 */
   right: 0;
   transform: translateY(-50%);
-  width: 16px;
-  height: 16px;
+  width: 1rem;
+  height: 1rem;
   background: url(./svg/arrow.svg) no-repeat center / 16px 16px;
-  margin-right: 1rem;
+  margin-right: 0;
 }
 .robot-icon {
   vertical-align: middle; /* テキストの中央に揃える */
@@ -351,6 +352,8 @@ main h1 {
   height: 589px; /* アイコン高さ */
 }
 
-.article1:hover {
-  border: 1px solid var(--color-border-muted);
+.article1:hover,
+.article2:hover,
+.article3:hover {
+  border-color: var(--color-border-muted);
 }
