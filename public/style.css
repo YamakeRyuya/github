@@ -398,7 +398,7 @@ main h1 {
       var(--robot-overlay-offset-x),
       calc(var(--robot-overlay-offset-y) - 8%)
     )
-    scale(0.96);
+    scale(0.9);
   width: var(--robot-overlay-size);
   aspect-ratio: 1 / 1;
   background-repeat: no-repeat;
@@ -407,8 +407,8 @@ main h1 {
   opacity: 0; /* 初期は非表示 */
   pointer-events: none; /* 操作は透過 */
   z-index: 2;
-  transition: opacity 0.25s ease, transform 0.25s ease; /* ふわっと */
-  filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.18)); /* 浮遊感 */
+  transition: opacity 0.5s ease, transform 0.5s ease; /* ふわっと */
+  /* filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.18)); 浮遊感 */
 }
 
 /* 記事ごとにホバー時のオーバーレイを切り替え（:has 利用） */
@@ -449,16 +449,4 @@ main h1 {
   cursor: pointer;
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
   fill: #0969da;
-}
-/* 上から順にarticle1 article2 article3をhoverしたときにrobot-iconの右上に位置するように浮き出す。 */
-
-/*public/public/svg/home-illo-team-code.svg
-public/public/svg/home-illo-team-chaos.svg
-public/public/svg/home-illo-team-tools.svg*/
-.robot-icon::after {
-  content: "";
-  position: absolute;
-  transform: translateY(-10px);
-  transition: transform 0.3s ease;
-  background: url(./svg/home-illo-team-code.svg) no-repeat center / 32px 32px;
 }
