@@ -414,29 +414,15 @@ main h1 {
 /* 記事ごとにホバー時のオーバーレイを切り替え（:has 利用） */
 /* article1 → code、article2 → chaos、article3 → tools を表示 */
 
+/* 各オーバーレイに固定の画像を割り当て */
+.overlay-code  { background-image: url(./svg/home-illo-team-code.svg); }
+.overlay-chaos { background-image: url(./svg/home-illo-team-chaos.svg); }
+.overlay-tools { background-image: url(./svg/home-illo-team-tools.svg); }
 
-.all-articles-class:has(.article1:hover) .robot-overlay {
-  background-image: url(./svg/home-illo-team-code.svg);
-  opacity: 1;
-  transform: translate(
-      var(--robot-overlay-offset-x),
-      var(--robot-overlay-offset-y)
-    )
-    scale(1);
-}
 
-.all-articles-class:has(.article2:hover) .robot-overlay {
-  background-image: url(./svg/home-illo-team-chaos.svg);
-  opacity: 1;
-  transform: translate(
-      var(--robot-overlay-offset-x),
-      var(--robot-overlay-offset-y)
-    )
-    scale(1);
-}
-
-.all-articles-class:has(.article3:hover) .robot-overlay {
-  background-image: url(./svg/home-illo-team-tools.svg);
+.all-articles-class:has(.article1:hover) .overlay-code,
+.all-articles-class:has(.article2:hover) .overlay-chaos,
+.all-articles-class:has(.article3:hover) .overlay-tools {
   opacity: 1;
   transform: translate(
       var(--robot-overlay-offset-x),
