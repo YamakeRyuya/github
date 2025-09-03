@@ -16,7 +16,7 @@
   --color-text-dark: #24292f; /* テキスト(濃色): ダークグレー */
   --color-text-faded: #ffffff99; /* テキスト(弱白): 半透明の白(60%) */
   --color-border-dark: #000000; /* 枠線(濃): 黒 */
-  --color-border-muted: grey; /* 枠線(淡): グレー */
+  --color-border-muted: #ffffff99; /* 枠線(弱白): 半透明の白(60%) */
   --color-button-bg: rgb(52, 183, 89); /* ボタン背景: グリーン */
   --color-button-text: azure; /* ボタン文字: アジュール(水色) */
   --color-building-gradient-start: #9e68a8; /* グラデ開始: パープル */
@@ -32,7 +32,7 @@
   --robot-overlay-offset-x: 0; /* 右方向の微調整(px, %, rem 可) */
   --robot-overlay-offset-y: 0; /* 下方向の微調整(px, %, rem 可) */
 }
-body {
+* {
   margin: 0; /* 既定余白除去 */
   padding: 0;
   font-family: "Roboto", sans-serif; /* 基本フォント */
@@ -292,10 +292,10 @@ main h1 {
 
 /* セクション間の区切り線 */
 .section-divider {
-  border: 0;
+  border: 1;
   border-top: 1px solid var(--color-border-muted);
   width: 100%;
-  margin: 2rem auto; /* 上下に適度な余白 */
+  margin: 5rem 0;
 }
 
 .all-articles-class > a {
@@ -447,4 +447,57 @@ main h1 {
   cursor: pointer;
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
   fill: #0969da;
+}
+
+.security-and-management {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem; /* 要素間の間隔 */
+  margin: 3rem 0;
+}
+
+.security-and-management > h2 {
+  color: var(--color-text-dark); /* #24292f 見出し */
+  font-weight: 700;
+}
+
+.security-and-management-title {
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--color-text-muted); /* #586069 */
+}
+.security-and-management-description {
+  font-size: 20px;
+  width: 59ch;
+  text-align: center;
+  justify-content: center;
+  color: var(--color-text-dark); /* #586069 */
+  font-weight: 200;
+  inline-size: 1.4;
+}
+
+.security-and-management-description-highlight {
+  color: #000;
+  font-weight: 400;
+}
+
+.security-and-management-button {
+  background-color: var(--color-white);
+  border: 1px solid rgb(186, 186, 186); /*var(--color-border-muted)だと映らなかった*/
+  border-radius: 5px;
+  padding: 1rem 1.2rem;
+  font-size: 15px;
+  width: 270px;
+  text-align: center;
+  font-weight: 600;
+  line-height: 1;
+  margin-top: 1rem;
+  border: 1;
+}
+
+.security-and-management-button:hover {
+  background-color: var(--color-border-muted);
+  box-shadow: inset 0 0 0 2px #000;
+  transition: box-shadow 0.2s ease;
 }
