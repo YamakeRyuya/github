@@ -279,6 +279,11 @@ main h1 {
   font-size: 16px;
   font-weight: 600;
 }
+#more-smarter-button:hover {
+  cursor: pointer;
+  box-shadow: inset 0 0 0 2px #000;
+  transition: box-shadow 0.25s ease;
+}
 
 #top-text-github {
   color: var(--color-text-dark); /* #24292f 見出し */
@@ -289,7 +294,7 @@ main h1 {
 .section-divider {
   border: 0;
   border-top: 1px solid var(--color-border-muted);
-  width: min(1100px, 90%);
+  width: 100%;
   margin: 2rem auto; /* 上下に適度な余白 */
 }
 
@@ -415,10 +420,15 @@ main h1 {
 /* article1 → code、article2 → chaos、article3 → tools を表示 */
 
 /* 各オーバーレイに固定の画像を割り当て */
-.overlay-code  { background-image: url(./svg/home-illo-team-code.svg); }
-.overlay-chaos { background-image: url(./svg/home-illo-team-chaos.svg); }
-.overlay-tools { background-image: url(./svg/home-illo-team-tools.svg); }
-
+.overlay-code {
+  background-image: url(./svg/home-illo-team-code.svg);
+}
+.overlay-chaos {
+  background-image: url(./svg/home-illo-team-chaos.svg);
+}
+.overlay-tools {
+  background-image: url(./svg/home-illo-team-tools.svg);
+}
 
 .all-articles-class:has(.article1:hover) .overlay-code,
 .all-articles-class:has(.article2:hover) .overlay-chaos,
