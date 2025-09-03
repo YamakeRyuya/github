@@ -501,3 +501,33 @@ main h1 {
   box-shadow: inset 0 0 0 2px #000;
   transition: box-shadow 0.2s ease;
 }
+
+.sourceCode-security {
+  /* 記事だけ縦並び＋画像は右に */
+  display: grid;
+  grid-template-columns: 1fr minmax(16rem, 44%);
+  align-items: start;
+  gap: 1.5rem 2rem;
+  margin-top: 5rem;
+}
+
+/* 直下の article を左カラムに積む */
+.sourceCode-security > article {
+  grid-column: 1;
+}
+
+/* 画像は右カラムで縦方向に2つの article をまたぐ */
+.sourceCode-security > img {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  width: 50ch;
+  height: auto;
+}
+
+.sourceCode-security-article {
+  display: block;
+}
+
+.security-image {
+  width: 44%;
+}
