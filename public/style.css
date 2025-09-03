@@ -389,7 +389,7 @@ main h1 {
 }
 
 /* ロボット右上に“浮き出す”オーバーレイ */
-.robot-figure::after {
+.robot-overlay {
   content: "";
   position: absolute;
   top: 0;
@@ -413,7 +413,9 @@ main h1 {
 
 /* 記事ごとにホバー時のオーバーレイを切り替え（:has 利用） */
 /* article1 → code、article2 → chaos、article3 → tools を表示 */
-.all-articles-class:has(.article1:hover) .robot-figure::after {
+
+
+.all-articles-class:has(.article1:hover) .robot-overlay {
   background-image: url(./svg/home-illo-team-code.svg);
   opacity: 1;
   transform: translate(
@@ -423,7 +425,7 @@ main h1 {
     scale(1);
 }
 
-.all-articles-class:has(.article2:hover) .robot-figure::after {
+.all-articles-class:has(.article2:hover) .robot-overlay {
   background-image: url(./svg/home-illo-team-chaos.svg);
   opacity: 1;
   transform: translate(
@@ -433,7 +435,7 @@ main h1 {
     scale(1);
 }
 
-.all-articles-class:has(.article3:hover) .robot-figure::after {
+.all-articles-class:has(.article3:hover) .robot-overlay {
   background-image: url(./svg/home-illo-team-tools.svg);
   opacity: 1;
   transform: translate(
