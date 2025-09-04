@@ -587,6 +587,8 @@ main h1 {
 .hosting-text {
   display: flex;
   flex-direction: column;
+  gap: 0.5rem;
+  font-size: 14px;
 }
 
 .plan-to-compare {
