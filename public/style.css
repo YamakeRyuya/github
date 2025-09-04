@@ -563,3 +563,37 @@ main h1 {
   margin: 0;
   padding: 0;
 }
+
+/* hosting をFlexで中央寄せするためのラッパー */
+.hosting-wrap {
+  display: flex;
+  justify-content: center; /* 子要素(.hosting)を中央に */
+  width: 100%;
+}
+
+.hosting {
+  display: flex;
+  margin-top: 3rem;
+  /* 透明度なしの実線（既存パレットの不透明色） */
+  border: 1px solid var(--color-stroke-muted);
+  padding: 1.5rem;
+  border-radius: 5px;
+  width: 60ch;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.hosting-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.plan-to-compare {
+  display: inline-flex;
+  direction: row;
+  align-items: center;
+  color: blue;
+  fill: blue;
+  gap: 10px;
+}
