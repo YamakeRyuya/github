@@ -507,11 +507,11 @@ main h1 {
 }
 
 .sourceCode-security {
-  /* 記事は左に縦積み、画像は右。左右と間に均等な余白 */
-  display: grid;
-  grid-template-columns: minmax(0, 50ch) 1fr;
-  align-items: start;
-  gap: 1rem clamp(1rem, 4vw, 3rem);
+  /* Flexで2カラム（左:記事スタック / 右:画像）を中央に配置。内部の間隔はgapで管理 */
+  display: flex;
+  justify-content: center; /* 2カラムをまとめて中央寄せ */
+  align-items: center; /* 左スタックと画像の縦中央を揃える */
+  gap: clamp(1rem, 4vw, 3rem); /* カラム間のスペース */
   margin: 5rem auto 0;
   padding-inline: clamp(1rem, 4vw, 3rem);
   max-width: 1200px;
@@ -519,37 +519,47 @@ main h1 {
   line-height: 1.4;
 }
 
-/* 直下の article を左カラムに積む */
-.sourceCode-security > article {
-  grid-column: 1;
+/* 左側：記事を縦スタック。上下パディング + 間はgap、marginは使わない */
+.sourceCode-security__left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.25rem; /* 上下2記事の間 */
   max-width: 50ch; /* 記事の横幅は維持 */
   width: 100%;
-  margin: 0; /* 余白はグリッドに任せる */
 }
-.sourceCode-security > article h2 {
+.sourceCode-security__left > article {
+  margin: 0; /* 余白は使わず */
+  padding: 0; /* 基本は0、上下だけ個別に足す */
+}
+.sourceCode-security__left > article:first-child {
+  padding-top: 0.75rem;
+}
+
+.sourceCode-security__left > article:last-child {
+  padding-bottom: 0.75rem;
+}
+
+/* タイポグラフィ（従来の指定を移行） */
+.sourceCode-security__left > article h2,
+.sourceCode-security-article > h2 {
   font-size: 1.2rem;
 }
-.sourceCode-security > article p {
+.sourceCode-security__left > article p,
+.sourceCode-security-article > p {
   font-size: 14px;
   max-width: 50ch;
   margin-top: 6px;
 }
 
-/* 画像は右カラムで縦方向に2つの article をまたぐ */
-.sourceCode-security > img {
-  grid-column: 2;
-  grid-row: 1 / span 2;
-  width: 100%;
-  max-width: 50ch; /* 左とバランスする幅上限 */
-  height: auto;
-  justify-self: start; /* 右カラム内で左揃え */
-  align-self: start;
-}
-
-.sourceCode-security-article {
-  display: block;
-}
-
+/* 右側：画像。padding/marginは取らずに中央に寄せる。記事より少し細め */
+.sourceCode-security__image,
+.sourceCode-security > img,
 .security-image {
-  width: 44%;
+  width: 100%;
+  max-width: 50ch; /* 左より少し小さく */
+  height: auto;
+  align-self: center; /* 左のスタックと縦中央を合わせる */
+  margin: 0;
+  padding: 0;
 }
