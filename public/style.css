@@ -676,20 +676,9 @@ main h1 {
   font-weight: 200;
 }
 
-/* ラベル（数値の下に表示される説明文）のスタイル */
-.hosting-label,
-.number-of-users-text,
-.number-of-organization-text {
-  display: block;
-  font-size: 1rem; /* 本文のサイズをここで調整 */
-  line-height: 1.2;
-  color: var(--color-text-muted);
-  margin-top: 0.25rem;
-}
-
 .blue-circle {
   background-color: #0969da;
-  height: 13rem;
+  height: 11rem;
   aspect-ratio: 1 / 1;
   border-radius: 50%;
   justify-content: center;
@@ -752,6 +741,14 @@ main h1 {
   line-height: 1.2;
 }
 
+.hosting-label,
+.number-of-users-text,
+.number-of-organization-text {
+  font-size: 0.7rem;
+  color: var(--color-white);
+  font-weight: 400;
+}
+
 .community-for-developer-circle-group-wrap {
   margin: 0;
   display: flex;
@@ -761,10 +758,25 @@ main h1 {
 .article-for-circle-wrap {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 2rem;
   margin: 0;
   font-size: 14px;
   max-width: 36ch;
-  height: 100%;
   justify-content: space-between;
+}
+.article-for-orange-circle,
+.article-for-blue-circle,
+.article-for-purple-circle {
+  display: flex;
+}
+
+.arrow-icon-right {
+  /* テキストサイズに連動させ、縮小されないようにする */
+  width: 1em;
+  height: 1em;
+  flex: 0 0 auto;
+}
+
+.article-for-orange-circle:hover {
+  cursor: pointer;
 }
