@@ -609,7 +609,7 @@ main h1 {
 }
 
 #community {
-  font-size: 15px;
+  font-size: 12px;
   color: var(--color-text-muted); /* #57606a */
 }
 .community-for-developer-title-group > h3 {
@@ -627,26 +627,144 @@ main h1 {
   font-weight: 500;
 }
 
+/* Community セクション全体を中央2カラムに配置（左: circles / 右: articles） */
+.community {
+  display: grid;
+  grid-template-columns: max-content minmax(28ch, 36ch);
+  justify-content: center;
+  align-items: stretch;
+  column-gap: 3rem;
+}
+
+/* タイトル行は2列にまたがる */
+.community-for-developer {
+  grid-column: 1 / -1;
+}
+
 .community-for-developer-circle-group {
-  display: flex;
+  /* 逆三角形レイアウトのためGridに変更 */
+  display: grid;
+  grid-template-columns: max-content max-content; /* 円のサイズに応じて列幅を決める */
+  justify-content: center; /* コンテナ全体を中央に */
+  justify-items: center; /* 各セル内の要素も中央に */
+  align-items: center;
+  column-gap: 2rem;
+  row-gap: 1.5rem;
   margin-top: 1rem;
+  color: var(--color-white);
 }
 
 .orange-circle {
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  display: flex;
   position: relative;
-  background-color: orange;
-  height: 10rem;
+  background-color: #fb8532;
+  height: 15rem;
   aspect-ratio: 1 / 1;
   border-radius: 50%;
 }
 
 .hosting-number {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  font-size: 2.5rem;
+  line-height: 1.2;
+  margin-bottom: 0.25rem;
 }
 
-.hostinng-label {
-  position: absolute;
+.hosting-number span {
+  font-weight: 200;
+}
+
+/* ラベル（数値の下に表示される説明文）のスタイル */
+.hosting-label,
+.number-of-users-text,
+.number-of-organization-text {
+  display: block;
+  font-size: 1rem; /* 本文のサイズをここで調整 */
+  line-height: 1.2;
+  color: var(--color-text-muted);
+  margin-top: 0.25rem;
+}
+
+.blue-circle {
+  background-color: #0969da;
+  height: 13rem;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  display: flex;
+  font-weight: 300;
+}
+
+.number-of-users {
+  font-size: 1.5rem;
+}
+.number-of-users span {
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.purple-circle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #6f42c1;
+  height: 8rem; /* 1remだと小さすぎて見えないため拡大 */
+  aspect-ratio: 1 / 1;
+  border-radius: 50%; /* 円形にする */
+  /* 下段中央に配置するため2列分をスパン */
+  grid-column: 1 / -1;
+  justify-self: center;
+}
+
+/* スモールスクリーンでは縦並びにフォールバック */
+@media (max-width: 640px) {
+  .community-for-developer-circle-group {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+  .purple-circle {
+    grid-column: auto;
+  }
+  .community {
+    display: block;
+  }
+  .article-for-circle-wrap {
+    height: auto;
+    justify-content: initial;
+    gap: 1.25rem;
+    max-width: none;
+    margin: 1rem 0;
+  }
+}
+
+.number-of-organization {
+  font-size: 1.5rem;
+}
+.number-of-organization span {
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.community-for-developer-circle-group-wrap {
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+.article-for-circle-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 0;
+  font-size: 14px;
+  max-width: 36ch;
+  height: 100%;
+  justify-content: space-between;
 }
