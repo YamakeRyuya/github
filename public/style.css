@@ -630,7 +630,7 @@ main h1 {
 /* Community セクション全体を中央2カラムに配置（左: circles / 右: articles） */
 .community {
   display: grid;
-  grid-template-columns: max-content minmax(28ch, 36ch);
+  grid-template-columns: 1fr 1fr; /* 1カラムにして全体中央に */
   justify-content: center;
   align-items: stretch;
   column-gap: 3rem;
@@ -661,7 +661,7 @@ main h1 {
   display: flex;
   position: relative;
   background-color: #fb8532;
-  height: 15rem;
+  height: 14rem;
   aspect-ratio: 1 / 1;
   border-radius: 50%;
 }
@@ -729,6 +729,7 @@ main h1 {
     gap: 1.25rem;
     max-width: none;
     margin: 1rem 0;
+    width: auto; /* モバイルでは自動幅に戻す */
   }
 }
 
@@ -750,33 +751,74 @@ main h1 {
 }
 
 .community-for-developer-circle-group-wrap {
-  margin: 0;
+  margin: 1rem;
+  margin-right: 5rem;
   display: flex;
-  align-items: center;
+  justify-content: center; /* 中央寄せ */
+  align-items: flex-start; /* 上端揃え */
+  gap: 4rem; /* 左右カラムの中央間隔 */
+  /* 親の.grid(.community)内で中央に配置 */
+  grid-column: 1 / -1;
+  justify-self: center;
+  width: max-content; /* 中身の幅に合わせて中央へ */
 }
 
 .article-for-circle-wrap {
+  color: var(--color-text-dark); /* #57606a */
   display: flex;
   flex-direction: column;
-  gap: 2rem;
   margin: 0;
   font-size: 14px;
-  max-width: 36ch;
+  /* 円グループの実幅（15rem + 2rem + 11rem = 28rem）に揃える */
+  /* width: calc(15rem + 2rem + 11rem); */
+  width: 22rem; /*22rem　articleの幅*/
   justify-content: space-between;
 }
 .article-for-orange-circle,
 .article-for-blue-circle,
 .article-for-purple-circle {
   display: flex;
+  position: relative; /* ::after の基準 */
+  /* 左右1rem、上下1.5rem。右は矢印分を確保 */
+  padding: 1.5rem 1rem;
+  padding-right: calc(
+    1rem + var(--article-arrow-gap) + var(--article-arrow-size)
+  );
+  border: 1px solid transparent; /* レイアウトシフト防止 */
+  transition: border-color 0.5s ease, box-shadow 0.3s ease;
 }
 
 .arrow-icon-right {
   /* テキストサイズに連動させ、縮小されないようにする */
-  width: 1em;
-  height: 1em;
-  flex: 0 0 auto;
+  width: 2em;
+  height: 2em;
 }
 
-.article-for-orange-circle:hover {
+/* Community の article 右端に矢印を ::after で表示 */
+.article-for-orange-circle::after,
+.article-for-blue-circle::after,
+.article-for-purple-circle::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: var(--article-arrow-gap);
+  transform: translateY(-50%);
+  width: var(--article-arrow-size);
+  height: var(--article-arrow-size);
+  background-color: var(--article-arrow-color);
+  transition: background-color 0.2s ease;
+  -webkit-mask: url(./svg/arrow.svg) no-repeat center /
+    var(--article-arrow-size) var(--article-arrow-size);
+  mask: url(./svg/arrow.svg) no-repeat center / var(--article-arrow-size)
+    var(--article-arrow-size);
+}
+
+/* Community 記事ホバー時：枠線 + アウトライン風の box-shadow を付与 */
+.article-for-orange-circle:hover,
+.article-for-blue-circle:hover,
+.article-for-purple-circle:hover {
+  border: 1px solid rgb(224, 223, 223);
+  box-shadow: 0 0 20px 1px rgb(224, 223, 223);
+  border-radius: 5px;
   cursor: pointer;
 }
