@@ -893,6 +893,13 @@ main h1 {
   z-index: 1;
 }
 
+.community-for-developer-circle-group-wrap:has(.article-for-purple-circle:hover)
+  .purple-circle {
+  transform: scale(1.06);
+  outline-color: rgb(224, 223, 223);
+  z-index: 1;
+}
+
 .community-for-developer-circle-group-wrap:has(.purple-circle:hover)
   .article-for-purple-circle {
   border: 1px solid rgb(224, 223, 223);
