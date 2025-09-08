@@ -711,6 +711,9 @@ main h1 {
   display: flex;
   font-weight: 300;
   transition: transform 0.3s ease, outline-color 0.3s ease;
+  outline: 1px solid transparent;
+  outline-offset: 0;
+  will-change: transform;
 }
 
 .number-of-users {
@@ -735,6 +738,9 @@ main h1 {
   grid-column: 1 / -1;
   justify-self: center;
   transition: transform 0.3s ease, outline-color 0.3s ease;
+  outline: 1px solid transparent;
+  outline-offset: 0;
+  will-change: transform;
 }
 
 /* スモールスクリーンでは縦並びにフォールバック */
@@ -873,9 +879,10 @@ main h1 {
 /* 直接circleをhoverした場合も同じ体験に */
 .community-for-developer-circle-group-wrap:has(.orange-circle:hover)
   .article-for-orange-circle {
+  border: 1px solid rgb(224, 223, 223);
   box-shadow: 0 0 20px 1px rgb(224, 223, 223);
-  outline-color: rgb(224, 223, 223);
-  z-index: 1;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 .community-for-developer-circle-group-wrap:has(.blue-circle:hover)
@@ -957,7 +964,7 @@ main h1 {
 .integration > button {
   padding: 0.75rem 2rem 1rem;
   background-color: var(--color-white);
-  border: 1px solid rgb(211, 210, 210); /* #000000 ボタン枠 */
+  border: 1px solid rgb(180, 178, 178); /* #000000 ボタン枠 */
   border-radius: 5px;
   font-size: 14px;
   font-weight: 600;
@@ -966,5 +973,54 @@ main h1 {
 }
 .integration > button:hover {
   box-shadow: inset 0 0 0 2px #000;
-  transition: box-shadow 0.2s ease;
+  transition: box-shadow 0.5s ease;
+}
+.icons {
+  display: flex;
+}
+
+/* icons row: 幅を縮めて中央に配置（flex）。アイコンサイズは固定。 */
+.icons > .various-icons {
+  --icon-size: 4rem; /* 丸アイコンの一辺（固定） */
+  --icon-gap: 1rem; /* アイコン間の隙間 */
+  --stagger-offset: 2rem; /* ずらし量（下方向） */
+  display: inline-flex; /* コンテンツ幅に合わせて縮める */
+  gap: var(--icon-gap);
+  margin-inline: auto; /* 中央寄せ */
+  padding-bottom: var(--stagger-offset); /* ずらしの余白を確保 */
+}
+
+/* grid-area は不使用に変更 */
+
+/* 各セル（div）を丸アイコン枠にし、画像は子imgで表示 */
+.icons > .various-icons > div {
+  position: relative; /* 子imgの絶対配置基準 */
+  width: var(--icon-size);
+  height: var(--icon-size);
+  border-radius: 50%; /* 丸くする */
+  overflow: visible; /* 画像の下げ分を可視化（行全体の余白は親で確保） */
+  background-color: #fff; /* 背景色（必要なら変更） */
+}
+
+/* 子imgをタグで表示（擬似要素は使わない） */
+.icons > .various-icons > div > img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* 基本は中央 */
+  max-width: 100%;
+  max-height: 100%;
+  width: auto; /* 原寸を優先（大き過ぎる場合のみ縮小） */
+  height: auto;
+  border-radius: inherit; /* 丸に沿わせる */
+  pointer-events: none; /* クリック透過（必要なら外す） */
+}
+
+/* 背景画像マッピングは不要（imgタグで表示するため削除） */
+
+/* 2番目・4番目・6番目だけ子imgを下にずらす（relative+absoluteで演出） */
+.icons > .various-icons > div:nth-child(2) > img,
+.icons > .various-icons > div:nth-child(4) > img,
+.icons > .various-icons > div:nth-child(6) > img {
+  transform: translate(-50%, calc(-50% + var(--stagger-offset)));
 }
