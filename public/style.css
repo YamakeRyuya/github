@@ -664,6 +664,30 @@ main h1 {
   height: 14rem;
   aspect-ratio: 1 / 1;
   border-radius: 50%;
+  /* hover時の視覚拡大はtransformで行い、レイアウトを変えない */
+  /* articleのtransitionと同じ秒数(0.3s)に揃える */
+  transition: transform 0.3s ease, outline-color 0.3s ease;
+  /* outlineは初期から透明で置いておき、色だけをアニメーション */
+  outline: 1px solid transparent;
+  outline-offset: 0;
+  will-change: transform;
+}
+
+.blue-circle,
+.purple-circle {
+  /* アンカーの全面当たり判定用にrelative化 */
+  position: relative;
+}
+
+/* 空アンカーで円全体をクリック可能に */
+.circle-link {
+  position: absolute;
+  inset: 0;
+  display: block;
+  border-radius: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  /* フォーカス時の見やすいアウトライン */
 }
 
 .hosting-number {
@@ -686,6 +710,7 @@ main h1 {
   flex-direction: column;
   display: flex;
   font-weight: 300;
+  transition: transform 0.3s ease, outline-color 0.3s ease;
 }
 
 .number-of-users {
@@ -709,6 +734,7 @@ main h1 {
   /* 下段中央に配置するため2列分をスパン */
   grid-column: 1 / -1;
   justify-self: center;
+  transition: transform 0.3s ease, outline-color 0.3s ease;
 }
 
 /* スモールスクリーンでは縦並びにフォールバック */
@@ -821,4 +847,71 @@ main h1 {
   box-shadow: 0 0 20px 1px rgb(224, 223, 223);
   border-radius: 5px;
   cursor: pointer;
+}
+
+/* orange-circle
+  blue-circle
+  purple-circle
+*/
+
+/* Cross-hover: purple article <-> orange circle */
+/* レイアウトを押し広げてしまうheight変更は無効化（参考として残す）
+.community-for-developer-circle-group-wrap:has(.article-for-purple-circle:hover) .orange-circle {
+  height: 14.5rem;  
+}
+*/
+
+/* レイアウトに影響しないtransformで僅かに拡大 + 装飾 */
+.community-for-developer-circle-group-wrap:has(.article-for-orange-circle:hover)
+  .orange-circle {
+  transform: scale(1.04);
+  /* borderはレイアウトに影響するため、outline/box-shadowで代替 */
+  outline-color: rgb(224, 223, 223);
+  z-index: 1;
+}
+
+/* 直接circleをhoverした場合も同じ体験に */
+.community-for-developer-circle-group-wrap:has(.orange-circle:hover)
+  .article-for-orange-circle {
+  box-shadow: 0 0 20px 1px rgb(224, 223, 223);
+  outline-color: rgb(224, 223, 223);
+  z-index: 1;
+}
+
+.community-for-developer-circle-group-wrap:has(.blue-circle:hover)
+  .article-for-blue-circle {
+  border: 1px solid rgb(224, 223, 223);
+  box-shadow: 0 0 20px 1px rgb(224, 223, 223);
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.community-for-developer-circle-group-wrap:has(.article-for-blue-circle:hover)
+  .blue-circle {
+  transform: scale(1.06);
+  outline-color: rgb(224, 223, 223);
+  z-index: 1;
+}
+
+.community-for-developer-circle-group-wrap:has(.purple-circle:hover)
+  .article-for-purple-circle {
+  border: 1px solid rgb(224, 223, 223);
+  box-shadow: 0 0 20px 1px rgb(224, 223, 223);
+  border-radius: 5px;
+  cursor: pointer;
+}
+.orange-circle:hover {
+  transform: scale(1.06);
+  outline-color: rgb(224, 223, 223);
+  z-index: 1;
+}
+.blue-circle:hover {
+  transform: scale(1.06);
+  outline-color: rgb(224, 223, 223);
+  z-index: 1;
+}
+.purple-circle:hover {
+  transform: scale(1.04);
+  outline-color: rgb(224, 223, 223);
+  z-index: 1;
 }
