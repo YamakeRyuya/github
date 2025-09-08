@@ -922,3 +922,49 @@ main h1 {
   outline-color: rgb(224, 223, 223);
   z-index: 1;
 }
+
+.integration {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem; /* 要素間の間隔 */
+  margin: 3rem 0;
+}
+
+.integration > h2 {
+  color: var(--color-text-dark); /* #24292f 見出し */
+  font-weight: 700;
+}
+
+#integration {
+  font-size: 12px;
+  color: var(--color-text-muted);
+}
+
+.title-under-text {
+  font-size: 1.25rem;
+  color: var(--color-text-dark);
+  font-weight: 200;
+  text-align: center;
+  width: min(90%, 56ch);
+}
+
+.title-under-text > span {
+  color: var(--color-text-dark);
+  font-weight: 500;
+}
+
+.integration > button {
+  padding: 0.75rem 2rem 1rem;
+  background-color: var(--color-white);
+  border: 1px solid rgb(211, 210, 210); /* #000000 ボタン枠 */
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+  margin-top: 2rem;
+}
+.integration > button:hover {
+  box-shadow: inset 0 0 0 2px #000;
+  transition: box-shadow 0.2s ease;
+}
