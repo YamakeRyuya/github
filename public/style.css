@@ -1188,7 +1188,7 @@ main h1 {
   border-radius: 5px;
   color: var(--color-button-text);
   font-weight: 400;
-  margin: 3rem 0;
+  margin: 2rem 0;
   font-size: 1rem;
 }
 
@@ -1200,3 +1200,80 @@ main h1 {
   transition: background-color 0.2s ease, box-shadow 0.2s ease;
   cursor: pointer;
 }
+
+/* Footer nav (flex-based, borderless) */
+
+.footer-nav-sections-wrap {
+  display: flex;
+  margin-left: auto;
+}
+
+.footer-nav {
+  display: flex; /* セクションを横に流し、折り返し */
+  flex-wrap: wrap;
+  align-items: flex-start;
+  max-width: 1200px;
+  width: 100%;
+  /* padding: 0 clamp(1rem, 4vw, 2rem) 3rem; */
+}
+
+.footer-nav-section {
+  flex: 1 1 220px; /* 横幅に応じて可変、最低幅220px */
+  min-width: 200px;
+}
+
+.footer-nav-heading {
+  font-size: 1.25rem; /* 大きめ */
+  font-weight: 700;
+  color: var(--color-text-dark);
+  font-weight: 200;
+  font-size: 14px;
+}
+
+.footer-nav-links {
+  display: flex;
+  flex-direction: column; /* 縦並び */
+  gap: 1rem; /* 行間 */
+  color: var(--color-text-muted);
+  margin-top: 1rem;
+  font-weight: 200;
+  font-size: 14px;
+}
+
+.footer-nav-links a {
+  color: var(--color-text-dark);
+  /* font-size: 1.1rem; 項目を大きめに */
+}
+
+@media (max-width: 680px) {
+  .footer-nav {
+    gap: 0.75rem; /* 小画面は詰める */
+  }
+  .footer-nav-section {
+    flex-basis: 100%; /* 1列に */
+    min-width: 0;
+  }
+  .footer-nav-heading {
+    margin-top: 0.25rem;
+  }
+}
+
+/* Place footer title left, nav grid right */
+.foot {
+  display: flex; /* タイトルを上、ナビを下に縦積み */
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+  max-width: 1200px;
+  width: 100%;
+  margin: 2rem auto 0;
+  padding: 0 clamp(1rem, 4vw, 2rem) 3rem;
+}
+
+.foot > h1 {
+  color: var(--color-text-dark);
+  font-size: clamp(1.5rem, 2.8vw, 2rem);
+  font-weight: 700;
+}
+
+/* ここでは小画面でもそのまま縦積みなので追加指定なし */
