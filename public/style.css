@@ -35,6 +35,12 @@
   font-family: "Roboto", sans-serif;
 }
 
+/* 念のためルートで横スクロールを抑止（微小なはみ出し対策） */
+html,
+body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
 *,
 *::before,
 *::after {
@@ -725,8 +731,8 @@ main h1 {
 }
 
 .community-for-developer-circle-group-wrap {
-  margin: 1rem;
-  margin-right: 5rem;
+  /* Prevent horizontal overflow and center the group */
+  margin: 1rem auto;
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -734,7 +740,9 @@ main h1 {
 
   grid-column: 1 / -1;
   justify-self: center;
-  width: max-content;
+  width: 100%;
+  max-width: 1200px;
+  padding-inline: clamp(1rem, 4vw, 3rem);
 }
 
 .article-for-circle-wrap {
@@ -901,6 +909,7 @@ main h1 {
 }
 .icons {
   display: flex;
+  /* 横方向のはみ出しを抑止 */
 }
 
 .icons > .various-icons {
@@ -908,6 +917,7 @@ main h1 {
   --icon-gap: 4rem;
   --stagger-offset: 3rem;
   display: inline-flex;
+  justify-content: center;
   margin-top: 2rem;
   gap: var(--icon-gap);
   margin-inline: auto;
@@ -1041,4 +1051,152 @@ main h1 {
 
   margin-left: 0.25em;
   margin-top: 0.2rem;
+}
+
+/* Organization logos (400万以上もの組織) */
+.more-400-auganization-wrap {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin: 0 auto 5rem;
+}
+.more-400-auganization {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  margin: 4rem 0;
+  width: 100%;
+  max-width: 1200px;
+  padding-inline: clamp(1rem, 4vw, 3rem);
+}
+
+.more-400-auganization-text {
+  color: var(--color-text-dark);
+  font-weight: 600;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.compolation-icons {
+  display: grid;
+  grid-template-columns: repeat(6, max-content);
+  justify-content: center;
+  align-items: center;
+  gap: 2rem 4rem;
+  padding: 0.5rem 1rem 1.5rem;
+  /* UL reset */
+  list-style: none;
+  margin: 0;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-user-drag: none;
+}
+
+.compolation-icons > li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.compolation-icons img {
+  height: 28px; /* 統一の高さ */
+  width: auto;
+  filter: grayscale(100%);
+  -webkit-filter: grayscale(100%);
+  opacity: 0.9;
+}
+
+@media (max-width: 1024px) {
+  .compolation-icons {
+    grid-template-columns: repeat(4, max-content);
+    gap: 1.5rem 2.5rem;
+  }
+  .compolation-icons img {
+    height: 26px;
+  }
+  .icons > .various-icons {
+    --icon-size: 3.25rem;
+    --icon-gap: 2.5rem;
+    --stagger-offset: 2rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .compolation-icons {
+    grid-template-columns: repeat(3, max-content);
+    gap: 1.25rem 1.75rem;
+  }
+  .compolation-icons img {
+    height: 22px;
+  }
+  .icons > .various-icons {
+    --icon-size: 2.5rem;
+    --icon-gap: 1.5rem;
+    --stagger-offset: 1.25rem;
+  }
+  .soft {
+    margin: 3rem 1rem;
+  }
+}
+
+/* 絶対配置の装飾がはみ出さないように保護
+.robot-figure {
+  max-width: 100%;
+  overflow: hidden;
+} */
+
+.more-400-auganization-wrap > .more-400-auganization > p {
+  color: var(--color-text-dark);
+  font-size: 10px;
+}
+
+.free-plan {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin: 4rem 0;
+  /* Responsive padding so text width remains controllable */
+  padding: clamp(2rem, 6vw, 5rem) clamp(1rem, 6vw, 3rem);
+  background-color: var(--color-header-bg);
+  color: var(--color-white);
+}
+.free-plan > h1 {
+  font-weight: 600;
+  font-size: 1.5rem;
+  line-height: 1.5;
+  text-align: center;
+  /* keep the block centered, but don't force fixed width */
+  max-width: 66ch;
+  width: 100%;
+}
+
+/* @media (min-width: 1280px) {
+  Fine-tune to keep roughly 3 lines on very wide screens 
+  .free-plan > h1 {
+    max-width: 54ch;
+  }
+} */
+
+.free-plan > button {
+  background-color: var(--color-button-bg);
+  border: 1px solid var(--color-button-bg);
+  padding: 0.75rem 1.5rem;
+  border-radius: 5px;
+  color: var(--color-button-text);
+  font-weight: 400;
+  margin: 3rem 0;
+  font-size: 1rem;
+}
+
+.free-plan > button:hover {
+  /* Subtle darken on hover without changing text color */
+  background: linear-gradient(rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.08)),
+    var(--color-button-bg);
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.15);
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
 }
