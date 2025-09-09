@@ -982,9 +982,10 @@ main h1 {
 /* icons row: 幅を縮めて中央に配置（flex）。アイコンサイズは固定。 */
 .icons > .various-icons {
   --icon-size: 4rem; /* 丸アイコンの一辺（固定） */
-  --icon-gap: 1rem; /* アイコン間の隙間 */
-  --stagger-offset: 2rem; /* ずらし量（下方向） */
+  --icon-gap: 4rem; /* アイコン間の隙間 */
+  --stagger-offset: 3rem; /* ずらし量（下方向） */
   display: inline-flex; /* コンテンツ幅に合わせて縮める */
+  margin-top: 2rem;
   gap: var(--icon-gap);
   margin-inline: auto; /* 中央寄せ */
   padding-bottom: var(--stagger-offset); /* ずらしの余白を確保 */
@@ -999,21 +1000,57 @@ main h1 {
   height: var(--icon-size);
   border-radius: 50%; /* 丸くする */
   overflow: visible; /* 画像の下げ分を可視化（行全体の余白は親で確保） */
-  background-color: #fff; /* 背景色（必要なら変更） */
+  /* 背景円用のカスタムプロパティ（デフォルトは無効=透明） */
+  --bg-color: transparent; /* 背景円の色 */
+  --bg-spread: 0rem; /* 背景円の拡張量（片側） */
 }
 
-/* 子imgをタグで表示（擬似要素は使わない） */
+/* 子imgはタグで描画（ロゴ本体）。背景円は ::before で描画 */
 .icons > .various-icons > div > img {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%); /* 基本は中央 */
-  max-width: 100%;
-  max-height: 100%;
-  width: auto; /* 原寸を優先（大き過ぎる場合のみ縮小） */
-  height: auto;
-  border-radius: inherit; /* 丸に沿わせる */
+  width: 3rem; /* 原寸を優先（大き過ぎる場合のみ縮小） */
+  height: 3rem;
+  /* border-radius: inherit; 丸に沿わせる */
   pointer-events: none; /* クリック透過（必要なら外す） */
+  z-index: 1; /* 背景円より前面に */
+  /*
+    ダブルクリック等で画像が選択状態になるのを防ぐ
+    - user-select: テキスト/要素の選択自体を無効化
+    - -webkit-user-drag: 画像のドラッグ開始（ゴースト画像）を無効化（Safari/旧Chromium系）
+    - -webkit-touch-callout: iOSでの長押しメニューを抑制
+  */
+  user-select: none; /* 要素の選択（ハイライト）を無効化 */
+  -webkit-user-select: none; /* Safari/旧Chrome向けの指定（同上） */
+  -webkit-touch-callout: none; /* iOSでの長押しメニューを無効化 */
+  -webkit-user-drag: none; /* 画像のドラッグ開始を禁止（Safari/旧Chrome） */
+}
+
+/*
+  背景円追従の実装メモ
+  - 目的: ロゴ(img)の背後に色付き円を表示し、imgの位置/オフセットに“追従”させる。
+  - 手法: 各アイコンdivの ::before で円を描画。色/太さは --bg-color / --bg-spread で個別制御。
+  - 追従: img と同じ基準 (absolute + 50%/50% + translate(-50%, -50%)) で中央合わせ。
+  - オフセット: 2/4/6番目の下方向ずらしは ::before にも同じ transform を適用して同期。
+  - 重なり順: ::before が背景 (z-index:0)、img は前面 (z-index:1)。
+  - レイアウト: 擬似要素のため拡張してもレイアウトに影響しない（枠外は overflow:visible で可視化）。
+*/
+/* 背景円（拡張＆追従）。色/サイズは各アイコンで変数指定 */
+.icons > .various-icons > div::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: calc(var(--icon-size) + 2 * var(--bg-spread));
+  height: calc(var(--icon-size) + 2 * var(--bg-spread));
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  /* --bg-color が未指定でも安全に透明にフォールバック */
+  background-color: var(--bg-color, transparent);
+  z-index: 0;
+  box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.1);
 }
 
 /* 背景画像マッピングは不要（imgタグで表示するため削除） */
@@ -1023,4 +1060,100 @@ main h1 {
 .icons > .various-icons > div:nth-child(4) > img,
 .icons > .various-icons > div:nth-child(6) > img {
   transform: translate(-50%, calc(-50% + var(--stagger-offset)));
+}
+
+/* 画像を下げるアイテム(2,4,6番目)に背景円も追従（img と同じ transform を適用） */
+.icons > .various-icons > div:nth-child(2)::before,
+.icons > .various-icons > div:nth-child(4)::before,
+.icons > .various-icons > div:nth-child(6)::before {
+  transform: translate(-50%, calc(-50% + var(--stagger-offset)));
+}
+
+/* Slack だけ背景の円を大きく（img サイズはそのまま）。
+   親の背景色は使わず、::before の色で制御 */
+.icons > .various-icons > .Slack {
+  /* 色はHTMLの style="--bg-color: ..." で指定推奨 */
+  --bg-color: #553958;
+  --bg-spread: 1rem;
+  background-color: transparent;
+}
+
+.icons > .various-icons > .ZenHub {
+  /* 色はHTMLの style="--bg-color: ..." で指定推奨 */
+  --bg-color: #364e98;
+  --bg-spread: 1rem;
+  background-color: transparent;
+}
+
+.icons > .various-icons > .TravisCI {
+  /* 色はHTMLの style="--bg-color: ..." で指定推奨 */
+  --bg-color: #eff9f9;
+  --bg-spread: 1rem;
+  background-color: transparent;
+}
+
+.icons > .various-icons > .Atom {
+  /* 色はHTMLの style="--bg-color: ..." で指定推奨 */
+  --bg-color: #5fb57d;
+  --bg-spread: 1rem;
+  background-color: transparent;
+}
+
+/* HTML側のクラス表記に合わせて CircleCi に統一 */
+.icons > .various-icons > .CircleCi {
+  /* 色はHTMLの style="--bg-color: ..." で指定推奨 */
+  --bg-color: #022531;
+  --bg-spread: 1rem;
+  background-color: transparent;
+}
+
+/* 追加: HTMLのdivに存在する残りのクラス */
+.icons > .various-icons > .Codeship {
+  /* 色はHTMLの style="--bg-color: ..." で指定推奨 */
+  --bg-color: #f3f6fb;
+  --bg-spread: 1rem;
+  background-color: transparent;
+}
+
+.icons > .various-icons > .codeclimate {
+  /* 色はHTMLの style="--bg-color: ..." で指定推奨 */
+  --bg-color: #303030;
+  --bg-spread: 1rem;
+  background-color: transparent;
+}
+
+.soft {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin: 7rem;
+}
+
+.soft > p {
+  color: var(--color-text-dark);
+}
+
+.soft > a {
+  color: #0969da;
+}
+/*
+  Marketplaceリンク内の矢印SVGをテキストと縦中央揃えにする
+  - a要素を inline-flex にして、文字とアイコンを並べて align-items:center で縦中央
+  - SVG側はフォントサイズに追従する 1em 四方にし、vertical-align:middle をフォールバックとして付与
+*/
+.GitHub-market-place {
+  display: inline-flex; /* テキストとSVGを並べる（インラインのまま） */
+  align-items: center; /* 行の中で縦方向を中央に揃える */
+  justify-content: center; /* 横方向も中央に（必要に応じて） */
+  margin-top: 1rem;
+}
+
+.arrow-icon-right-market-place {
+  fill: #0969da; /* 矢印の色 */
+  width: 1em; /* フォントサイズに合わせたアイコン高さ */
+  height: 1em; /* フォントサイズに合わせたアイコン幅 */
+  vertical-align: middle; /* フレックスでない場合の予備の縦中央揃え */
+
+  margin-left: 0.25em; /* テキストとの間に少し余白を作る */
+  margin-top: 0.2rem; /*ここがちょうど真ん中になる*/
 }
