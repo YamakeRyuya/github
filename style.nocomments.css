@@ -6,6 +6,9 @@
   --color-header-bg: #24292f; 
   --color-hero-bg: #2b3137; 
   --color-text: aliceblue; 
+  --drawer-width: min(84vw, 320px);
+  --drawer-z: 1000;
+  --page-inline-pad: clamp(8px, 4vw, 3rem);
   
   --color-white: #ffffff; 
   --color-link: #ffffff; 
@@ -42,6 +45,9 @@
   box-sizing: border-box;
 } 
 
+/* ページ直下セクションの左右パディング（常時適用） */
+body > *:not(header):not(.drawer-scrim) { padding-inline: var(--page-inline-pad); }
+
 .github-logo {
   fill: var(--color-white); 
   width: 32px; 
@@ -64,6 +70,46 @@ header {
   background-color: var(--color-header-bg); 
   color: var(--color-text); 
 }
+
+.menu-toggle {
+  display: none;
+  -webkit-appearance: none;
+  appearance: none;
+  border: 0;
+  background: transparent;
+  width: 40px;
+  height: 40px;
+  border-radius: 6px;
+  position: relative;
+  color: inherit;
+}
+.menu-toggle:focus-visible {
+  outline: 2px solid #99c2ff;
+  outline-offset: 2px;
+}
+.menu-toggle::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 22px;
+  height: 2px;
+  border-radius: 2px;
+  background-color: currentColor;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 -7px 0 0 currentColor, 0 7px 0 0 currentColor;
+}
+
+.drawer-scrim {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  z-index: calc(var(--drawer-z) - 1);
+}
+.is-drawer-open .drawer-scrim { opacity: 1; pointer-events: auto; }
 
 .header-left-group {
   display: flex; 
@@ -96,6 +142,31 @@ header {
   gap: 16px;
   margin-left: auto; 
   align-items: center; 
+}
+
+@media (max-width: 960px) {
+  .menu-toggle { display: inline-flex; align-items: center; justify-content: center; }
+  #site-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100dvh;
+    width: var(--drawer-width);
+    background-color: var(--color-header-bg);
+    transform: translateX(-100%);
+    transition: transform 0.25s ease;
+    z-index: var(--drawer-z);
+    padding: 1rem;
+    padding-top: max(1rem, env(safe-area-inset-top));
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    box-shadow: 2px 0 16px rgba(0, 0, 0, 0.4);
+    pointer-events: none;
+  }
+  .is-drawer-open #site-nav { transform: translateX(0); pointer-events: auto; }
+  #site-nav ul { display: flex; flex-direction: column; gap: 0; }
+  #site-nav li + li { border-top: 1px solid rgba(255, 255, 255, 0.08); }
+  #site-nav a { display: block; padding: 0.9rem 0.25rem 1rem; font-size: 1rem; }
 }
 
 #sign_up {
@@ -135,6 +206,7 @@ main {
   ); 
   margin: 0 auto; 
   padding: 0; 
+  padding-inline: var(--page-inline-pad);
   display: flex; 
   flex-direction: column; 
   justify-content: center; 
@@ -229,6 +301,10 @@ main h1 {
   line-height: 1.4;
 }
 
+@media (max-width: 820px) {
+  .building-text { margin: 1rem auto 0; }
+}
+
 .open-source-project-business-use {
   color: var(--color-text); 
   border-bottom: 1px solid var(--color-border-muted); 
@@ -243,6 +319,7 @@ main h1 {
   justify-content: center;
   gap: 0.75rem; 
   padding: 2rem 0; 
+  padding-inline: var(--page-inline-pad);
   margin: 2rem 0; 
 }
 #more-smarter-top {
@@ -465,12 +542,12 @@ main h1 {
 }
 .security-and-management-description {
   font-size: 20px;
-  width: 59ch;
+  width: min(90%, 56ch);
   text-align: center;
   justify-content: center;
   color: var(--color-text-dark); 
   font-weight: 200;
-  inline-size: 1.4;
+  line-height: 1.4;
 }
 
 .security-and-management-description-highlight {
@@ -493,9 +570,13 @@ main h1 {
 }
 
 .security-and-management-button:hover {
-  background-color: var(--color-border-muted);
-  box-shadow: inset 0 0 0 2px #000;
-  transition: box-shadow 0.2s ease;
+  background-color: var(--color-border-muted); 
+  box-shadow: inset 0 0 0 2px #000; 
+  transition: box-shadow 0.2s ease; 
+}
+
+@media (max-width: 640px) {
+  .security-and-management-description { font-size: 16px; }
 }
 
 .sourceCode-security {
@@ -737,6 +818,16 @@ main h1 {
 
 
 @media (max-width: 640px) {
+  /* スマホ: コミュニティの円と記事を縦に交互配置 */
+  .community-for-developer-circle-group-wrap { display: flex; flex-direction: column; gap: 1rem; }
+  .community-for-developer-circle-group, .article-for-circle-wrap { display: contents; }
+  .orange-circle { order: 1; } #article-orange { order: 2; }
+  .blue-circle { order: 3; } #article-blue { order: 4; }
+  .purple-circle { order: 5; } #article-purple { order: 6; }
+  .article-for-circle-wrap article { margin: 0.5rem 0 1.25rem; }
+}
+
+/* Note: ページ外側の余白は付けず、各セクション内側で調整 */
   .community-for-developer-circle-group {
     grid-template-columns: 1fr;
     justify-items: center;
@@ -1105,7 +1196,7 @@ main h1 {
 }
 
 .soft > a {
-  color: #0969da;
+  color: #0969da; 
 }
 
 .GitHub-market-place {
@@ -1123,4 +1214,17 @@ main h1 {
 
   margin-left: 0.25em; 
   margin-top: 0.2rem; 
+}
+
+@media (max-width: 640px) {
+  main img,
+  section img,
+  .building img,
+  .footer-nav img { display: block; margin-block: 1.25rem; }
+  main svg:not(.github-logo):not(.triangle-icon):not(.main-github-logo),
+  section svg,
+  .building svg,
+  .footer-nav svg { display: block; margin-block: 1.25rem; }
+  .icons > .various-icons { flex-direction: column; flex-wrap: nowrap; align-items: center; gap: 1rem; }
+  .compolation-icons { grid-template-columns: 1fr; justify-items: center; }
 }

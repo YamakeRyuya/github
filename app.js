@@ -107,3 +107,68 @@
     window.__tippyResizeRaf = requestAnimationFrame(init);
   });
 })();
+
+// Mobile header side drawer toggle
+(function () {
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initDrawer);
+  } else {
+    initDrawer();
+  }
+
+  function initDrawer() {
+    const toggle = document.querySelector(".menu-toggle");
+    const nav = document.getElementById("site-nav");
+    const scrim = document.querySelector(".drawer-scrim");
+    if (!toggle || !nav) return;
+
+    let scrollYBeforeLock = 0;
+    const lockScroll = () => {
+      scrollYBeforeLock = window.scrollY || window.pageYOffset || 0;
+      const b = document.body.style;
+      b.position = "fixed";
+      b.top = `-${scrollYBeforeLock}px`;
+      b.left = "0";
+      b.right = "0";
+      b.width = "100%";
+    };
+    const unlockScroll = () => {
+      const b = document.body.style;
+      b.position = "";
+      b.top = "";
+      b.left = "";
+      b.right = "";
+      b.width = "";
+      window.scrollTo(0, scrollYBeforeLock || 0);
+    };
+
+    const open = () => {
+      document.body.classList.add("is-drawer-open");
+      toggle.setAttribute("aria-expanded", "true");
+      lockScroll();
+    };
+    const close = () => {
+      document.body.classList.remove("is-drawer-open");
+      toggle.setAttribute("aria-expanded", "false");
+      unlockScroll();
+    };
+
+    toggle.addEventListener("click", () => {
+      const isOpen = document.body.classList.contains("is-drawer-open");
+      if (isOpen) close(); else open();
+    });
+    if (scrim) scrim.addEventListener("click", close);
+    if (nav) {
+      nav.addEventListener("click", (e) => {
+        if (e.target && e.target.closest && e.target.closest("a")) close();
+      });
+    }
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") close();
+    });
+    // Auto-close when resizing to desktop
+    window.addEventListener("resize", () => {
+      if (window.innerWidth > 960) close();
+    });
+  }
+})();
