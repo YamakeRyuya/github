@@ -5,6 +5,24 @@
 (function () {
   const instances = [];
 
+  // Convert CSS length to px (supports px, rem, em; falls back to number)
+  function toPx(len, ctxEl) {
+    if (!len) return 0;
+    const v = String(len).trim();
+    if (v.endsWith('px')) return parseFloat(v) || 0;
+    if (v.endsWith('rem')) {
+      const rootSize = parseFloat(getComputedStyle(document.documentElement).fontSize) || 16;
+      return (parseFloat(v) || 0) * rootSize;
+    }
+    if (v.endsWith('em')) {
+      const base = parseFloat(getComputedStyle(ctxEl || document.documentElement).fontSize) || 16;
+      return (parseFloat(v) || 0) * base;
+    }
+    // fallback: raw number assumed px
+    const n = parseFloat(v);
+    return isNaN(n) ? 0 : n;
+  }
+
   function getCenterDeltaY(el) {
     const img = el.querySelector("img");
     if (!img) return 0;
@@ -53,14 +71,18 @@
       // 画像が下にズレている分だけツールチップも下げる
       const deltaY = getCenterDeltaY(el); // px 差分（下方向が正）
       const baseDistance = 8; // デフォルト距離
-      const perElementOffset = [0, baseDistance + Math.max(0, deltaY)];
+      // ::before の外側まで矢印先端が来るように、--bg-spread を加味
+      const spreadLen = getComputedStyle(el).getPropertyValue('--bg-spread');
+      const spreadPx = toPx(spreadLen, el);
+      const perElementOffset = [0, baseDistance + Math.max(0, deltaY) + (spreadPx || 0)];
 
       const inst = window.tippy(el, {
         theme: "light-border",
         arrow: true,
         animation: "shift-away-subtle",
-        delay: [80, 40],
-        duration: [200, 150],
+        // hover解除時のラグを無くす
+        delay: [80, 0], // show, hide
+        duration: [200, 0], // show, hide
         placement: "bottom",
         offset: perElementOffset,
         allowHTML: false,
