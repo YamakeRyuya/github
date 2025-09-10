@@ -1305,6 +1305,12 @@ main h1 {
   font-size: 14px;
 }
 
+.footer-nav-links a:hover {
+  cursor: pointer;
+  color: #0969da;
+  text-decoration: underline;
+}
+
 .footer-nav-links a {
   color: var(--color-text-dark);
   /* font-size: 1.1rem; 項目を大きめに */
@@ -1361,6 +1367,12 @@ footer > small,
 footer a {
   color: var(--color-text-muted);
   font-size: 12px;
+}
+
+.footer-link:hover {
+  color: #0969da;
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 footer > ul {
