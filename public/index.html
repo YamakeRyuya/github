@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GitHub Japan | GitHub</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700"
+      rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,700;1,400&display=swap"
+      rel="stylesheet" />
+    <!-- Tippy.js CSS for tooltips -->
+    <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/dist/tippy.css" />
+  </head>
+  <body>
+    <!-- ヘッダー: 画面上部に表示されるナビゲーションエリア。ナビのリスト構造を整備 -->
+    <header>
+      <div class="header-left-group header-nav">
+        <!-- GitHubのロゴ -->
+        <svg
+          height="32"
+          class="github-logo"
+          viewBox="0 0 16 16"
+          version="1.1"
+          width="32">
+          <path
+            fill-rule="evenodd"
+            d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+        </svg>
+        <!-- ナビゲーション: li > a 構造に統一し、装飾アイコンは a 内に配置 -->
+        <nav>
+          <ul>
+            <li>
+              <a href=""
+                >Why GitHub?
+                <svg
+                  x="16px"
+                  y="16px"
+                  viewBox="0 0 14 8"
+                  xml:space="preserve"
+                  fill="none"
+                  class="triangle-icon"
+                  aria-hidden="true">
+                  <path d="M1,1l6.2,6L13,1"></path>
+                </svg>
+              </a>
+            </li>
+            <li><a href="">企業向け</a></li>
+            <li>
+              <a href=""
+                >価格
+                <svg
+                  x="16px"
+                  y="16px"
+                  viewBox="0 0 14 8"
+                  xml:space="preserve"
+                  fill="none"
+                  class="triangle-icon"
+                  aria-hidden="true">
+                  <path d="M1,1l6.2,6L13,1"></path>
+                </svg>
+              </a>
+            </li>
+            <li><a href="">ユーザー事例</a></li>
+            <li><a href="">リソース</a></li>
+            <li><a href="">ブログ</a></li>
+            <li><a href="">お問合せ</a></li>
+            <li><a href="">会社概要</a></li>
+            <li>
+              <a href=""
+                >Explore
+                <svg
+                  x="16px"
+                  y="16px"
+                  viewBox="0 0 14 8"
+                  xml:space="preserve"
+                  fill="none"
+                  class="triangle-icon"
+                  aria-hidden="true">
+                  <path d="M1,1l6.2,6L13,1"></path>
+                </svg>
+              </a>
+            </li>
+            <li><a href="">Marketplace</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="sign_in_up">
+        <a href="" id="sign_in">サインイン</a>
+        <a href="" id="sign_up">サインアップ</a>
+      </div>
+    </header>
+    <main>
+      <div class="main-div">
+        <svg
+          height="48"
+          class="main-github-logo"
+          aria-label="github logo"
+          viewBox="0 0 16 16"
+          version="1.1"
+          width="48"
+          role="img">
+          <path
+            fill-rule="evenodd"
+            d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+        </svg>
+
+        <h1>開発者のための<br/>プラットフォーム</h1>
+        <p>
+          GitHubは、ユーザのみなさんからヒントを得て作成された開発プラットフォームです。<a href="#" class="inline-link"><span class="open-source-project-business-use">オープンソースプロジェクト</span></a>や<a href="#" class="inline-link"><span class="open-source-project-business-use">ビジネスユース</span></a>まで、GitHub上にソースコードをホスティングすることで数百万人もの他の開発者と一緒にコードのレビューを行ったり、プロジェクトの管理をしながら、ソフトウェアの開発を行うことができます。
+        </p>
+        <button id="button-in-main">GitHubに登録する</button>
+      </div>
+    </main>
+    <div class="building">
+      <img src="./svg/btf-logo.svg" alt="building" class="building-icon" />
+      <p class="building-text">
+        未来を変えるような何百万ものソフトウェアが毎日生まれています。そして、それらソフトウェアはあなたのような開発者によって作られています。
+      </p>
+    </div>
+    <div class="more-smarter">
+      <p id="more-smarter-top">GitHubをチームで活用</p>
+      <h2 id="more-smarter-middle">共同作業をよりスマートに</h2>
+      <p id="more-smarter-second-middle"><span id="top-text-github">GitHub</span>を活用することで、チームの連携を強化できます。問題を解決し、アイデアを実現し、その過程で互いに学び合うことができるようになります。</p>
+      <button id="more-smarter-button">GitHubに登録する</button>
+    </div>        
+   
+    <div class="all-articles-class">
+      <div class="robot-figure">
+  <img src="./svg/home-illo-team.svg" alt="なんか変なロボットにパソコン繋いでる写真" class="robot-icon"/>
+  <div class="robot-overlay overlay-code"></div>
+  <div class="robot-overlay overlay-chaos"></div>
+  <div class="robot-overlay overlay-tools"></div>
+      </div>
+      
+    <section class="three-articles">
+
+      <div class="article-wrap">
+        <article class="article1">
+          <h3 class="article-h">ソースコードの品質を工場</h3>
+          <p class="article-p">コラボレーションによってソースコードの品質が向上します。Pull Requestの際に行われる会話やコードレビューを行うことでチームで作業を分担することができ、開発しているソフトウェアを改善するのに役立ちます<a href="./">コードレビューに関してはこちらをご確認ください。</a></p>
+        </article>
+      </div>
+
+      <div class="article-wrap">
+        <article class="article2">
+          <h3 class="article-h">効率的なプロジェクト管理</h3>
+          <p class="article-p">GitHubではIssuesとProjectsにより、コードを見ながらプロジェクト管理を行うことができます。必要なのは、チームメイトに参加するようにメンションすることだけです。<a href="./">プロジェクト管理についてはこちらをご確認ください。</a></p>
+        </article>
+      </div>
+
+      <div class="article-wrap">
+        <article class="article3">
+          <h3 class="article-h">最低なツールを見つける</h3>
+          <p class="article-p">GitHubアカウントを使用して、GitHub Marketplaceでアプリケーションを探して購入することができます。好みのツールを見つけたり、お気に入りのツールを発見したら、すぐに使い始めることが可能です。<a href="./">インテグレーションについてはこちらをご確認ください。</a></p>
+        </article>
+      </div>
+
+    </section>
+    </div>
+
+    <hr class="section-divider"/>
+
+    <div class="security-and-management">
+      <p class="security-and-management-title">セキュリティと管理</p>
+      <h2>必要な要件はすべて網羅</h2>
+      <p class="security-and-management-description">管理やセキュリティは<span class="security-and-management-description-highlight">GitHub</span>が対応するので心配無用です。<span class="security-and-management-description-highlight">GitHub</span>が、柔軟なホスティングから認証オプションに至るまで、チームのさまざまな要件を満たせるようサポートします。</p>
+      <button class="security-and-management-button">企業向けソリューションについてはこちらをご確認ください</button>
+    </div>
+    <div class="sourceCode-security">
+      <div class="sourceCode-security__left">
+        <article class="sourceCode-security-article">
+          <h2>ソースコードのセキュリティ</h2>
+          <p>問題は事前に防止することが重要です。ブランチの保護やコミットへの署名、ステータスチェックを必須条件にすることによりソースコードを保護し、高い水準を維持することができます。</p>
+        </article>
+        <article class="sourceCode-security-article">
+          <h2>アクセス制限</h2>
+          <p>柔軟な権限付与、SAML/SSOとLDAPを使用した認証により、許可されたユーザだけがアクセスできるよう制限しつつ、チームの連携を促進することができます。</p>
+        </article>
+      </div>
+      <img class="sourceCode-security__image security-image" src="./img/home-illo-business_6.png" alt="セキュリティがしっかりしてるよって写真">
+    </div>
+    <div class="hosting-wrap">
+    <div class="hosting">
+      <div class="hosting-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" class="hosting-icon-svg" width="64px"><title>1clr-code-hosting</title><path d="M27 13h-9a1 1 0 0 0 0 2h9a1 1 0 0 0 0-2zM42 12a1 1 0 0 0-1 1v2a1 1 0 0 0 2 0v-2a1 1 0 0 0-1-1zM46 12a1 1 0 0 0-1 1v2a1 1 0 0 0 2 0v-2a1 1 0 0 0-1-1zM27 28h-9a1 1 0 0 0 0 2h9a1 1 0 0 0 0-2zM42 31a1 1 0 0 0 1-1v-2a1 1 0 0 0-2 0v2a1 1 0 0 0 1 1zM46 31a1 1 0 0 0 1-1v-2a1 1 0 0 0-2 0v2a1 1 0 0 0 1 1z" fill="#23292f"></path><path d="M50 44h-1a13 13 0 0 0-4.68-9H48a3 3 0 0 0 3-3v-6a3 3 0 0 0-3-3h-5v-3h5a3 3 0 0 0 3-3v-6a3 3 0 0 0-3-3H16a3 3 0 0 0-3 3v6a3 3 0 0 0 3 3h5v3h-5a3 3 0 0 0-3 3v6a3 3 0 0 0 3 3h11.72a13 13 0 0 0-3.79 5.21A7 7 0 0 0 13.28 44 6 6 0 0 0 14 56h36a6 6 0 0 0 0-12zM15 17v-6a1 1 0 0 1 1-1h32a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1H16a1 1 0 0 1-1-1zm8 3h18v3H23zm-7 13a1 1 0 0 1-1-1v-6a1 1 0 0 1 1-1h32a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1h-7a12.9 12.9 0 0 0-10 0H16zm34 21H14a4 4 0 1 1 .09-8 1 1 0 0 0 1-.83 5 5 0 0 1 8.6-2.55 1 1 0 0 0 1.7-.42A11 11 0 0 1 47 45a1 1 0 0 0 1 1h2a4 4 0 0 1 0 8z" fill="#23292f"></path>
+        </svg>
+      </div>
+      <div class="hosting-text">
+        <h3>柔軟なホスティング</h3>
+        <p>GitHub.comで、安全かつ信頼性にすぐれた方法でソースコードをホストできます。また、Amazon Web Services、Azure、Google Cloud Platformを使用して、専用サーバやプライベートクラウドにGitHub Enterpriseを導入することもできます。</p>
+        <a href="" class="plan-to-compare">
+          プランを比較する
+          <svg height="16" class="arrow-icon-right" aria-label="right arrow" viewBox="0 0 16 16" version="1.1" width="16" role="img"><path fill-rule="evenodd" d="M6.22 3.22a.75.75 0 011.06 0l4.25 4.25a.75.75 0 010 1.06l-4.25 4.25a.75.75 0 01-1.06-1.06L9.94 8 6.22 4.28a.75.75 0 010-1.06z"></path></svg>
+        </a>
+      </div>
+    </div>
+    </div>
+    <hr class="section-divider">
+    <div class="integration">
+      <p id="integration">インテグレーション</p>
+      <h2>さまざまなツールをGitHubと連携</h2>
+      <p class="title-under-text"><span>GitHub</span>アプリケーションと直感的な<span>API</span>を使用して、開発プロセスをカスタマイズすることができます。すでに使用しているツールを連携させたり、新しいツールを見つけたりすることで、より楽しく効率的な開発作業を実現できます。</p>
+      <button>インテグレーションについては<br>こちらをご確認ください</button>
+    </div>
+    <section class="icons">
+        <div class="various-icons">
+
+          <div class="Slack"><img src="./img/slackhq.png" alt="Slack"></div>
+          <div class="ZenHub"><img src="./img/zenhubio.png" alt="ZenHub"></div>
+          <div class="TravisCI"><img src="./img/travis-ci.png" alt="Travis CI"></div>
+          <div class="Atom"><img src="./img/atom.png" alt="Atom"></div> 
+          <div class="CircleCi"><img src="./img/circleci.png" alt="CircleCI"></div>
+          <div class="Codeship"><img src="./img/codeship.png" alt="Codeship"></div>
+          <div class="codeclimate"><img src="./img/codeclimate.png" alt="Code Climate"></div>
+
+        </div>
+    </section>
+    <div class="soft">
+      <p>ソフトウェア開発にはさまざまなツールが必要です。<br>新しいツールを探してみましょう。</p>
+      <a href="" class="GitHub-market-place">GitHub Marketplaceを見る<svg height="16" class="arrow-icon-right-market-place" aria-label="right arrow" viewBox="0 0 16 16" version="1.1" width="16" role="img"><path fill-rule="evenodd" d="M6.22 3.22a.75.75 0 011.06 0l4.25 4.25a.75.75 0 010 1.06l-4.25 4.25a.75.75 0 01-1.06-1.06L9.94 8 6.22 4.28a.75.75 0 010-1.06z"></path></svg></a>
+    </div>
+
+
+
+
+
+
+
+    <hr class="section-divider">
+    <div class="community">
+      <div class="community-for-developer">
+        <div class="community-for-developer-title-group">
+          <p id="community">コミュニティ</p>
+          <h3>開発者のためのコミュニティ</h3>
+          <p id="community-description"><span>GitHub</span>は世界最大級の開発者のためのコミュニティです。</p>
+        </div>
+      </div>
+    <div class="community-for-developer-circle-group-wrap">
+      <div class="community-for-developer-circle-group">
+        
+        <section class="orange-circle">
+
+          <span class="hosting-number">3.3<span>億*</span></span>
+          <span class="hosting-label">リポジトリをホスティング</span>
+          <a class="circle-link" href="#article-orange" aria-label="オレンジの記事へ"></a>
+
+        </section>
+        <section class="blue-circle">
+
+          <span class="number-of-users"><span>9,400</span>万人*</span>
+          <span class="number-of-users-text">の開発者が利用</span>
+          <a class="circle-link" href="#article-blue" aria-label="ブルーの記事へ"></a>
+
+        </section>
+        <section class="purple-circle">
+
+          <span class="number-of-organization"><span>400</span>万*</span>
+          <span class="number-of-organization-text">の組織が利用</span>
+          <a class="circle-link" href="#article-purple" aria-label="パープルの記事へ"></a>
+
+        </section>
+      </div>
+
+       <div class="article-for-circle-wrap">
+        <div class="trasition-wrap">
+          <article id="article-orange" class="article-for-orange-circle">
+            <p>GitHubのユーザーは影響力の大きいテクノロジーを開発・管理する、世界最大規模のオープンソースコミュニティです。</p>
+          </article>
+        </div>
+     
+      <article id="article-blue" class="article-for-blue-circle">
+        <p><span>開発者</span>は新しいプログラミング言語の実験やライフワークとも言える自慢のソースコードなど、さまざまなプロジェクトにGitHubを活用しています。</p>
+      </article>
+      <article id="article-purple" class="article-for-purple-circle">
+        <p>さまざまな企業が安全に、かつアジャイルにソフトウェア開発を行うためにGitHubを活用しています。</p>
+      </article>
+      </div>
+  </div>
+  </div>
+<section class="more-400-auganization-wrap">
+  <div class="more-400-auganization">
+    <h1 class="more-400-auganization-text">400万*以上もの組織に利用されています</h1>
+  <ul class="compolation-icons">
+    <li><img src="./img/airbnb-logo.png" alt="Airbnb" /></li>
+    <li><img src="./img/sap-logo.png" alt="SAP" /></li>
+    <li><img src="./img/ibm-logo.png" alt="IBM" /></li>
+    <li><img src="./img/google-logo.png" alt="Google" /></li>
+    <li><img src="./img/paypal-logo.png" alt="PayPal" /></li>
+    <li><img src="./img/bloomberg-logo.png" alt="Bloomberg" /></li>
+    <li><img src="./img/spotify-logo.png" alt="Spotify" /></li>
+    <li><img src="./img/swift-logo.png" alt="Swift" /></li>
+    <li><img src="./img/facebook-logo.png" alt="Facebook" /></li>
+    <li><img src="./img/node-logo.png" alt="Node.js" /></li>
+    <li><img src="./img/nasa-logo.png" alt="NASA" /></li>
+    <li><img src="./img/walmart-logo.png" alt="Walmart" /></li>
+  </ul>
+  <p>*2022年11月</p>
+  </div>
+   </section> 
+<div class="free-plan">
+  <h1>まずは無料版をお試しください。すでにGitHubを使用している数百万人もの開発者の仲間と一緒にコードを共有し、共同で作業を行い、すばらしい成果を上げ<br>ましょう。</h1>
+
+  <button>GitHubに登録する</button>
+</div>
+<div class="foot">
+<div class="footer-nav" role="navigation" aria-label="Footer navigation">
+  <h1><a href="#">GitHub</a></h1>
+
+<section class="footer-nav-sections-wrap">
+  <section class="footer-nav-section">
+    <h2 class="footer-nav-heading">Product</h2>
+    <nav class="footer-nav-links">
+      <a href="#">Features</a>
+      <a href="#">Security</a>
+      <a href="#">Enterprise</a>
+      <a href="#">Customer stories</a>
+      <a href="#">Pricing</a>
+      <a href="#">Resources</a>
+
+    </nav>
+  </section>
+
+  <section class="footer-nav-section">
+    <h2 class="footer-nav-heading">Platform</h2>
+    <nav class="footer-nav-links">
+      <a href="#">Developer API</a>
+      <a href="#">Partners</a>
+      <a href="#">Atom</a>
+      <a href="#">Electron</a>
+      <a href="#">GitHub Desktop</a>
+    </nav>
+  </section>
+
+  <section class="footer-nav-section">
+    <h2 class="footer-nav-heading">Support</h2>
+    <nav class="footer-nav-links">
+      <a href="#">Docs</a>
+      <a href="#">Community Forum</a>
+      <a href="#">Training</a>
+      <a href="#">Status</a>
+      <a href="#">Contact GitHub</a>
+    </nav>
+  </section>
+
+  <section class="footer-nav-section">
+    <h2 class="footer-nav-heading">Company</h2>
+    <nav class="footer-nav-links">
+      <a href="#">About</a>
+      <a href="#">Blog</a>
+      <a href="#">Careers</a>
+      <a href="#">Press</a>
+      <a href="#">Shop</a>
+    </nav>
+  </section>
+</section>
+
+</div>
+</div>
+
+<footer>
+  <small>&copy; <time datetime="2025">2025</time> GitHub, Inc.</small>
+  <a href="#" class="footer-link">Team</a>
+  <a href="#" class="footer-link">Privacys</a>
+
+  <ul aria-label="Social links" class="social-links">
+    <li>
+      <a href="#" aria-label="Twitter">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 273.5 222.3" class="social-icon twitter" role="img">
+          <g fill="currentColor">
+            <path d="M273.5,26.3a109.77,109.77,0,0,1-32.2,8.8A56.07,56.07,0,0,0,266,4.1a113.39,113.39,0,0,1-35.7,13.6,56.1,56.1,0,0,0-97,38.4,54,54,0,0,0,1.5,12.8A159.68,159.68,0,0,1,19.1,10.3,56.12,56.12,0,0,0,36.5,85.2a56.06,56.06,0,0,1-25.4-7v.7a56.11,56.11,0,0,0,45,55,55.65,55.65,0,0,1-14.8,2,62.39,62.39,0,0,1-10.6-1,56.24,56.24,0,0,0,52.4,39,112.87,112.87,0,0,1-69.7,24A119,119,0,0,1,0,197.1a158.83,158.83,0,0,0,86,25.2c103.2,0,159.6-85.5,159.6-159.6,0-2.4-.1-4.9-.2-7.3a114.25,114.25,0,0,0,28.1-29.1"></path>
+          </g>
+        </svg>
+      </a>
+    </li>
+    <li>
+      <a href="#" aria-label="Facebook">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.3 15.4" class="social-icon facebook" role="img">
+          <g fill="currentColor">
+            <path d="M14.5,0H.8A.88.88,0,0,0,0,.9V14.5a.88.88,0,0,0,.8.9H8.1v-6h-2V7.1h2V5.4a2.87,2.87,0,0,1,2.5-3.1h.5a10.87,10.87,0,0,1,1.8.1V4.5H11.6c-1,0-1.1.5-1.1,1.1V7.1h2.3l-.3,2.3h-2v5.9h3.9a.88.88,0,0,0,.9-.8h0V.8A.86.86,0,0,0,14.5,0Z"></path>
+          </g>
+        </svg>
+      </a>
+    </li>
+    <li>
+      <a href="#" aria-label="YouTube">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.17 13.6" class="social-icon youtube" role="img">
+          <g fill="currentColor">
+            <path d="M18.77,2.13A2.4,2.4,0,0,0,17.09.42C15.59,0,9.58,0,9.58,0a57.55,57.55,0,0,0-7.5.4A2.49,2.49,0,0,0,.39,2.13,26.27,26.27,0,0,0,0,6.8a26.15,26.15,0,0,0,.39,4.67,2.43,2.43,0,0,0,1.69,1.71c1.52.42,7.5.42,7.5.42a57.69,57.69,0,0,0,7.51-.4,2.4,2.4,0,0,0,1.68-1.71,25.63,25.63,0,0,0,.4-4.67A24,24,0,0,0,18.77,2.13ZM7.67,9.71V3.89l5,2.91Z"></path>
+          </g>
+        </svg>
+      </a>
+    </li>
+    <li>
+      <a href="#" aria-label="LinkedIn">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19 18" class="social-icon linkedin" role="img">
+          <g fill="currentColor">
+            <path d="M3.94,2A2,2,0,1,1,2,0,2,2,0,0,1,3.94,2ZM4,5.48H0V18H4Zm6.32,0H6.34V18h3.94V11.43c0-3.66,4.77-4,4.77,0V18H19V10.07c0-6.17-7.06-5.94-8.72-2.91Z"></path>
+          </g>
+        </svg>
+      </a>
+    </li>
+    <li>
+      <a href="#" aria-label="GitHub">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="social-icon github" role="img">
+          <path fill="currentColor" fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+        </svg>
+      </a>
+    </li>
+  </ul>
+
+
+</footer>
+
+
+
+   
+    <!-- Popper.js (required by Tippy.js) -->
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <!-- Tippy.js UMD -->
+    <script src="https://unpkg.com/tippy.js@6"></script>
+    <!-- App script: initialize tooltips, etc. -->
+    <script src="app.js"></script>
+    </body>
+</html>
