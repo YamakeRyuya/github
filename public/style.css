@@ -965,6 +965,15 @@ main h1 {
   background-color: var(--bg-color, transparent);
   z-index: 0;
   box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.1);
+  transition: box-shadow 100ms ease, transform 100ms ease;
+}
+.icons > .various-icons > div:hover::before {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.22);
+  /* transform: translate(-50%, -50%) scale(1.04); */
+}
+
+.icons > .various-icons > div:hover {
+  cursor: pointer;
 }
 
 .icons > .various-icons > div:nth-child(2) > img,
