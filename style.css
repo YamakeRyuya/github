@@ -162,61 +162,6 @@ body.is-drawer-open {
 }
 
 /* ナビの折り返し（小さめ画面での崩れ防止） */
-@media (max-width: 960px) {
-  header {
-    height: auto; /* 折り返し時に高さを自動化 */
-    min-height: var(--header-height);
-    flex-wrap: wrap;
-    row-gap: 0.5rem;
-  }
-  .menu-toggle {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .header-left-group {
-    gap: 16px;
-  }
-  /* サイドドロワー化 */
-  #site-nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100dvh;
-    width: var(--drawer-width);
-    background-color: var(--color-header-bg);
-    transform: translateX(-100%);
-    transition: transform 0.25s ease;
-    z-index: var(--drawer-z);
-    padding: 1rem;
-    padding-top: max(1rem, env(safe-area-inset-top));
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-    box-shadow: 2px 0 16px rgba(0, 0, 0, 0.4);
-    pointer-events: none; /* 閉時は無効化 */
-  }
-  .is-drawer-open #site-nav {
-    transform: translateX(0);
-    pointer-events: auto;
-  }
-  /* ドロワー内ナビを縦積みスタイルに */
-  #site-nav ul {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-  }
-  #site-nav li + li {
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
-  }
-  #site-nav a {
-    display: block;
-    padding: 0.9rem 0.25rem 1rem;
-    font-size: 1rem;
-  }
-  .sign_in_up {
-    margin-left: 0;
-  }
-}
 
 .triangle-icon {
   width: 12px;
@@ -357,19 +302,6 @@ main h1 {
 }
 
 /* ビルディングセクションの縦積み（狭幅時） */
-@media (max-width: 820px) {
-  .building {
-    flex-direction: column;
-    align-items: center;
-    text-align: left;
-  }
-  .building-icon {
-    margin: 1rem auto 0;
-  }
-  .building-text {
-    margin: 1rem auto 0; /* 上の画像から余白を確保 */
-  }
-}
 
 .building-icon {
   display: block;
@@ -468,18 +400,6 @@ main h1 {
 }
 
 /* 記事群を縦積みに（タブレット以下） */
-@media (max-width: 1024px) {
-  .all-articles-class {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 2rem;
-  }
-  .three-articles,
-  .article-p {
-    width: auto;
-    max-width: 100%;
-  }
-}
 
 .article-h {
   margin: 0;
@@ -541,7 +461,6 @@ main h1 {
 }
 .robot-icon {
   vertical-align: middle;
-
   width: clamp(16rem, 55vw, 40rem);
   max-width: 100%;
   height: auto;
@@ -655,11 +574,7 @@ main h1 {
   transition: box-shadow 0.2s ease;
 }
 
-@media (max-width: 640px) {
-  .security-and-management-description {
-    font-size: 16px;
-  }
-}
+/* セキュリティ説明のフォント調整（スマホ） */
 
 .sourceCode-security {
   display: flex;
@@ -674,14 +589,6 @@ main h1 {
 }
 
 /* セキュリティセクションの縦積み（タブレット以下） */
-@media (max-width: 1024px) {
-  .sourceCode-security {
-    flex-direction: column;
-  }
-  .sourceCode-security__left {
-    align-self: stretch;
-  }
-}
 
 .sourceCode-security__left {
   display: flex;
@@ -805,12 +712,6 @@ main h1 {
 }
 
 /* コミュニティ：1カラム落ち（タブレット以下） */
-@media (max-width: 960px) {
-  .community {
-    grid-template-columns: 1fr;
-    row-gap: 2rem;
-  }
-}
 
 .community-for-developer {
   grid-column: 1 / -1;
@@ -945,12 +846,7 @@ main h1 {
   padding-inline: clamp(1rem, 4vw, 3rem);
 }
 
-@media (max-width: 820px) {
-  .community-for-developer-circle-group-wrap {
-    gap: 2rem;
-    flex-wrap: wrap;
-  }
-}
+/* コミュニティ円グループの間隔調整（タブレット） */
 
 .article-for-circle-wrap {
   color: var(--color-text-dark);
@@ -963,29 +859,7 @@ main h1 {
   justify-content: space-between;
 }
 
-@media (max-width: 640px) {
-  /* スマホ: コミュニティの円と記事を縦に交互配置 */
-  .community-for-developer-circle-group-wrap {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-  /* 子コンテナをフラット化して並べ替え可能に */
-  .community-for-developer-circle-group,
-  .article-for-circle-wrap {
-    display: contents;
-  }
-  /* 並び順: 円 → 対応記事 の順で縦積み */
-  .orange-circle { order: 1; }
-  #article-orange { order: 2; }
-  .blue-circle { order: 3; }
-  #article-blue { order: 4; }
-  .purple-circle { order: 5; }
-  #article-purple { order: 6; }
-
-  /* 記事の余白調整 */
-  .article-for-circle-wrap article { margin: 0.5rem 0 1.25rem; }
-}
+/* コミュニティの円と記事の並び替え（スマホ） */
 
 /* Note: ページ外側の余白は付けず、各セクション内側で調整する方針 */
 .article-for-orange-circle,
@@ -1157,50 +1031,9 @@ main h1 {
   padding-bottom: var(--stagger-offset);
 }
 
-/* スマホサイズでは2列×3行のレイアウトに固定 */
-@media (max-width: 540px) {
-  .icons > .various-icons {
-    flex-wrap: wrap;
-    justify-content: center; /* 中央寄せ */
-    column-gap: 0; /* 正確に2列にするため横ギャップは0 */
-    row-gap: 1rem; /* 行間のみ確保 */
-    padding-bottom: 0; /* 段差用の余白を打ち消し */
-  }
+/* スマホサイズでは2列×3行のレイアウトに固定（下部へ集約） */
 
-  /* 各アイテムをちょうど2列になるよう 50% 幅に */
-  .icons > .various-icons > div {
-    flex: 0 0 50%;
-    max-width: 50%;
-    width: 100%;
-    height: auto; /* ベースの固定高さを打ち消す */
-    aspect-ratio: 1 / 1; /* 正方形のセルを確保 */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  /* スマホではズラし(段差)を無効化し、常に中央に */
-  .icons > .various-icons > div > img,
-  .icons > .various-icons > div::before {
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-
-  /* 7個目以降は非表示にして 2列×3行 = 6個 に */
-  .icons > .various-icons > div:nth-child(n+7) {
-    display: none;
-  }
-}
-
-/* 横幅が極端に狭いデバイスでの保険 */
-@media (max-width: 420px) {
-  .icons > .various-icons {
-    --icon-size: 2.25rem;
-    --icon-gap: 1rem;
-    --stagger-offset: 1rem;
-  }
-}
+/* 横幅が極端に狭いデバイスでの保険（下部へ集約） */
 
 .icons > .various-icons > div {
   position: relative;
@@ -1266,41 +1099,7 @@ main h1 {
   transform: translate(-50%, calc(-50% + var(--stagger-offset)));
 }
 
-/* 上記の段差スタイルをスマホでは打ち消し、2列×3行に固定 */
-@media (max-width: 540px) {
-  .icons > .various-icons {
-    flex-wrap: wrap;
-    justify-content: center;
-    column-gap: 0;
-    row-gap: 1rem;
-    padding-bottom: 0;
-  }
-  .icons > .various-icons > div {
-    flex: 0 0 50%;
-    max-width: 50%;
-    width: 100%;
-    height: auto;
-    aspect-ratio: 1 / 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .icons > .various-icons > div:nth-child(n+7) {
-    display: none;
-  }
-  .icons > .various-icons > div > img,
-  .icons > .various-icons > div::before,
-  .icons > .various-icons > div:nth-child(2) > img,
-  .icons > .various-icons > div:nth-child(4) > img,
-  .icons > .various-icons > div:nth-child(6) > img,
-  .icons > .various-icons > div:nth-child(2)::before,
-  .icons > .various-icons > div:nth-child(4)::before,
-  .icons > .various-icons > div:nth-child(6)::before {
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-}
+/* スマホのアイコン段差調整は下部に集約 */
 
 .icons > .various-icons > .Slack {
   --bg-color: #553958;
@@ -1432,93 +1231,11 @@ main h1 {
   opacity: 0.9;
 }
 
-@media (max-width: 1024px) {
-  .compolation-icons {
-    grid-template-columns: repeat(4, max-content);
-    gap: 1.5rem 2.5rem;
-  }
-  .compolation-icons img {
-    height: 26px;
-  }
-  .icons > .various-icons {
-    --icon-size: 3.25rem;
-    --icon-gap: 2.5rem;
-    --stagger-offset: 2rem;
-  }
-}
+/* compolation/icons の 1024px 以下調整は下部に集約 */
 
-@media (max-width: 640px) {
-  .compolation-icons {
-    grid-template-columns: repeat(3, max-content);
-    gap: 1.25rem 1.75rem;
-  }
-  .compolation-icons img {
-    height: 22px;
-  }
-  .icons > .various-icons {
-    --icon-size: 2.5rem;
-    --icon-gap: 1.5rem;
-    --stagger-offset: 1.25rem;
-  }
-  .soft {
-    margin: 3rem 1rem;
-  }
-}
+/* compolation/icons の 640px 以下調整は下部に集約 */
 
-/* さらにスマホ向け: 画像/SVGは縦積み＋十分な上下余白、ロゴは2カラム（flex） */
-@media (max-width: 640px) {
-  /* コンテンツ画像/SVGの上下余白（ヘッダー内アイコンは除外） */
-  main img,
-  section img,
-  .building img,
-  .footer-nav img {
-    display: block;
-    margin-block: 1.25rem;
-  }
-  main svg:not(.github-logo):not(.triangle-icon):not(.main-github-logo),
-  section svg,
-  .building svg,
-  .footer-nav svg {
-    display: block;
-    margin-block: 1.25rem;
-  }
-
-  /* アイコングループを1カラムに */
-  .icons > .various-icons {
-    flex-direction: column;
-    flex-wrap: nowrap;
-    align-items: center;
-    gap: 1rem;
-  }
-
-  /* ロゴをスマホ幅ではflexで2列に（等間隔） */
-  .compolation-icons {
-    --logo-gap: 0.75rem;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: var(--logo-gap);
-  }
-
-  .compolation-icons > li {
-    box-sizing: border-box;
-    flex: 0 0 calc(50% - calc(var(--logo-gap) / 2)); /* 2列＋ギャップを均等化 */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;   /* ::before配置の基準 */
-    line-height: 0;       /* 画像下の余白を消す */
-    isolation: isolate;   /* ::beforeの重なりのズレ防止 */
-  }
-
-  /* すべて同じ高さ。必要に応じて少し縮小 */
-  .compolation-icons img {
-    display: block; /* ベースラインズレ防止 */
-    margin: 0;      /* セクション共通の余白を打ち消す */
-    height: 20px;
-    width: auto;
-  }
-}
+/* スマホ向けスタイルは下部に集約 */
 
 /* 絶対配置の装飾がはみ出さないように保護
 .robot-figure {
@@ -1694,18 +1411,7 @@ main h1 {
   /* font-size: 1.1rem; 項目を大きめに */
 }
 
-@media (max-width: 680px) {
-  .footer-nav {
-    gap: 0.75rem; /* 小画面は詰める */
-  }
-  .footer-nav-section {
-    flex-basis: 100%; /* 1列に */
-    min-width: 0;
-  }
-  .footer-nav-heading {
-    margin-top: 0.25rem;
-  }
-}
+/* フッターの 680px 以下調整は下部に集約 */
 
 /* Place footer title left, nav grid right */
 .foot {
@@ -1797,6 +1503,402 @@ footer > ul a:hover {
   color: #57606a;
 }
 
+/* =============================
+   Responsive (Consolidated)
+   画面幅に応じたレイアウト調整を下部に集約
+   ============================= */
+
+/* 1024px 以下 */
+@media (max-width: 1024px) {
+  /* 記事群を縦積みに */
+  .all-articles-class {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 2rem;
+  }
+  .three-articles,
+  .article-p {
+    width: auto;
+    max-width: 100%;
+  }
+
+  /* セキュリティセクションの縦積み */
+  .sourceCode-security {
+    flex-direction: column;
+  }
+  .sourceCode-security__left {
+    align-self: stretch;
+  }
+
+  /* 企業ロゴ（初期は6列 → 4列） */
+  .compolation-icons {
+    grid-template-columns: repeat(4, max-content);
+    gap: 1.5rem 2.5rem;
+  }
+  .compolation-icons img {
+    height: 26px;
+    background-color: transparent;
+  }
+
+  /* インテグレーションアイコンのサイズ微調整 */
+  .icons > .various-icons {
+    --icon-size: 3.25rem;
+    --icon-gap: 2.5rem;
+    --stagger-offset: 2rem;
+  }
+}
+
+/* 960px 以下 */
+@media (max-width: 960px) {
+  /* ヘッダー/ナビの折り返し + ドロワー */
+  header {
+    height: auto; /* 折り返し時に高さを自動化 */
+    min-height: var(--header-height);
+    flex-wrap: wrap;
+    row-gap: 0.5rem;
+  }
+  .menu-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .header-left-group {
+    gap: 16px;
+  }
+  /* サイドドロワー化 */
+  #site-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100dvh;
+    width: var(--drawer-width);
+    background-color: var(--color-header-bg);
+    transform: translateX(-100%);
+    transition: transform 0.25s ease;
+    z-index: var(--drawer-z);
+    padding: 1rem;
+    padding-top: max(1rem, env(safe-area-inset-top));
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    box-shadow: 2px 0 16px rgba(0, 0, 0, 0.4);
+    pointer-events: none; /* 閉時は無効化 */
+  }
+  .is-drawer-open #site-nav {
+    transform: translateX(0);
+    pointer-events: auto;
+  }
+  /* ドロワー内ナビを縦積みスタイルに */
+  #site-nav ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  #site-nav li + li {
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  #site-nav a {
+    display: block;
+    padding: 0.9rem 0.25rem 1rem;
+    font-size: 1rem;
+  }
+  .sign_in_up {
+    margin-left: 0;
+  }
+
+  /* コミュニティ：2カラム → 1カラム */
+  .community {
+    grid-template-columns: 1fr;
+    row-gap: 2rem;
+  }
+}
+
+/* 820px 以下 */
+@media (max-width: 820px) {
+  /* ビルディングセクションの縦積み */
+  .building {
+    flex-direction: column;
+    align-items: center;
+    text-align: left;
+  }
+  .building-icon {
+    margin: 1rem auto 0;
+  }
+  .building-text {
+    margin: 1rem auto 0; /* 上の画像から余白を確保 */
+  }
+
+  /* コミュニティ円グループの間隔調整 */
+  .community-for-developer-circle-group-wrap {
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+}
+
+/* 680px 以下 */
+@media (max-width: 680px) {
+  .footer-nav {
+    gap: 0.75rem; /* 小画面は詰める */
+  }
+  .footer-nav-section {
+    flex-basis: 100%; /* 1列に */
+    min-width: 0;
+  }
+  .footer-nav-heading {
+    margin-top: 0.25rem;
+  }
+}
+
+/* 640px 以下 */
+@media (max-width: 640px) {
+  /* セクション本文のフォント調整 */
+  .security-and-management-description {
+    font-size: 16px;
+  }
+
+  /* コンテンツ画像/SVGの上下余白（ヘッダー内アイコンは除外） */
+  main img,
+  section img,
+  .building img,
+  .footer-nav img {
+    display: block;
+    margin-block: 1.25rem;
+  }
+  main svg:not(.github-logo):not(.triangle-icon):not(.main-github-logo),
+  section svg,
+  .building svg,
+  .footer-nav svg {
+    display: block;
+    margin-block: 1.25rem;
+  }
+
+  /* アイコングループ（インテグレーション）を一旦縦並びに */
+  .icons > .various-icons {
+    --icon-size: 2.5rem;
+    --icon-gap: 1.5rem;
+    --stagger-offset: 1.25rem;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  /* 企業ロゴ: スマホは2列のフレックスに */
+  .compolation-icons {
+    --logo-gap: 0.75rem;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--logo-gap);
+    justify-items: center;
+    align-items: center;
+  }
+  /* 各セルは重ね合わせを容易にするため grid */
+  .compolation-icons > li {
+    box-sizing: border-box;
+    display: grid;
+    place-items: center;
+    position: relative; /* ::before配置の基準 */
+    line-height: 0; /* 画像下の余白を消す */
+    isolation: isolate; /* ::beforeの重なりのズレ防止 */
+  }
+  /* ロゴ背景の疑似要素（中央に重ねる） */
+  .compolation-icons > li::before {
+    content: "";
+    grid-area: 1 / 1;
+    /* 固定寄りのサイズでずれを防止 */
+    width: clamp(40px, 9vw, 56px);
+    height: clamp(40px, 9vw, 56px);
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.04);
+    z-index: 0;
+    place-self: center;
+  }
+  .compolation-icons img {
+    display: block; /* ベースラインズレ防止 */
+    margin: 0; /* セクション共通の余白を打ち消す */
+    height: 20px;
+    width: auto;
+    grid-area: 1 / 1; /* ::before と同じ領域に重ねる */
+    position: relative;
+    z-index: 1; /* ::before より前面に */
+  }
+
+  /* コミュニティ: 円と記事を交互に縦並び */
+  .community-for-developer-circle-group-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .community-for-developer-circle-group,
+  .article-for-circle-wrap {
+    display: contents;
+  }
+  .orange-circle {
+    order: 1;
+  }
+  #article-orange {
+    order: 2;
+  }
+  .blue-circle {
+    order: 3;
+  }
+  #article-blue {
+    order: 4;
+  }
+  .purple-circle {
+    order: 5;
+  }
+  #article-purple {
+    order: 6;
+  }
+  .article-for-circle-wrap article {
+    margin: 0.5rem 0 1.25rem;
+  }
+
+  /* 余白微調整 */
+  .soft {
+    margin: 3rem 1rem;
+  }
+}
+
+/* 540px 以下：インテグレーションアイコンを2列×3行に */
+@media (max-width: 540px) {
+  /* 備考: コンテナはベースでも width:100% にできるが、
+           影響が広いためまずは <=540px で限定適用 */
+  .icons > .various-icons {
+    display: grid; /* inline-flex だと幅が収縮し、1列化しやすいため grid に */
+    width: 100%;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem; /* 等間隔 */
+    justify-items: center;
+    align-items: center;
+    padding-bottom: 0; /* 段差用の余白を打ち消し */
+  }
+  /* 各アイテムをちょうど2列になるよう 50% 幅に */
+  .icons > .various-icons > div {
+    /* grid の各セル内に収め、中央寄せ */
+    position: relative; /* 絶対配置の img/::before の基準（再明示） */
+    width: 100%;
+    height: auto; /* ベースの固定高さを打ち消す */
+    aspect-ratio: 1 / 1; /* 正方形のセルを確保 */
+    display: grid;
+    place-items: center;
+  }
+  /* スマホではズラし(段差)を無効化し、常に中央に */
+  .icons > .various-icons > div > img,
+  .icons > .various-icons > div::before,
+  .icons > .various-icons > div:nth-child(2) > img,
+  .icons > .various-icons > div:nth-child(4) > img,
+  .icons > .various-icons > div:nth-child(6) > img,
+  .icons > .various-icons > div:nth-child(2)::before,
+  .icons > .various-icons > div:nth-child(4)::before,
+  .icons > .various-icons > div:nth-child(6)::before {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+  }
+  /* 7個目以降は非表示にして 2列×3行 = 6個 に */
+  .icons > .various-icons > div:nth-child(n + 7) {
+    display: none;
+  }
+
+  /* 企業ロゴ: 540px以下も 2列グリッド + 等間隔 + ::before/img を同一手法で中央寄せ
+     備考: ベースでも統一可能だが影響が広いため <=540px に限定。将来的にベース化を検討。 */
+  .compolation-icons {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--logo-gap, 0.75rem);
+    justify-items: center;
+    align-items: center;
+  }
+  .compolation-icons > li {
+    position: relative;
+    display: grid;
+    place-items: center;
+    line-height: 0;
+    isolation: isolate;
+  }
+  .compolation-icons > li::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: clamp(40px, 9vw, 56px);
+    height: clamp(40px, 9vw, 56px);
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.04);
+    z-index: 0;
+  }
+  .compolation-icons img {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 20px;
+    width: auto;
+    z-index: 1;
+  }
+  /* 2列×3行 = 6個で固定 */
+  .compolation-icons > li:nth-child(n + 7) {
+    display: none;
+  }
+}
+
+/* 420px 以下：インテグレーションアイコンのサイズ微調整 */
+@media (max-width: 420px) {
+  .icons > .various-icons {
+    --icon-size: 2.25rem;
+    --icon-gap: 1rem;
+    --stagger-offset: 1rem;
+  }
+  /* 企業ロゴ: 420px 以下も 2列グリッド + 等間隔 + ::before 中央
+     備考: 本来はベース指定でも良いが影響範囲が広いため、
+          まずは 420px 以下に限定して適用（後日ベース化を検討）。 */
+  .compolation-icons {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--logo-gap, 0.75rem);
+    justify-items: center;
+    align-items: center;
+  }
+  .compolation-icons > li {
+    display: grid;
+    place-items: center;
+    position: relative; /* ::before の絶対配置ベース */
+    line-height: 0; /* 画像下の余白を消す */
+    isolation: isolate; /* ::before の重なりズレ防止 */
+  }
+  .compolation-icons > li::before {
+    content: "";
+    position: absolute; /* 互換性重視で中央寄せ */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: clamp(40px, 9vw, 56px);
+    height: clamp(40px, 9vw, 56px);
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.04);
+    z-index: 0;
+  }
+  .compolation-icons img {
+    display: block;
+    margin: 0;
+    height: 20px;
+    width: auto;
+    position: absolute; /* ::before と同一の座標系で中央配置 */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+  }
+  /* スマホでは2列×3行 = 6個に限定 */
+  .compolation-icons > li:nth-child(n + 7) {
+    display: none;
+  }
+}
+
 /* 低モーション環境への配慮 */
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -1808,3 +1910,26 @@ footer > ul a:hover {
     scroll-behavior: auto !important;
   }
 }
+
+.robot-icon {
+  margin-left: auto;
+}
+.robot-figure {
+  display: block;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+}
+
+.integration > h2 {
+  width: 30ch;
+  text-align: center;
+}
+
+.title-under-text {
+  text-align: center;
+  line-height: 1.6;
+  width: 33ch;
+}
+
+/* 誤って li 自体を 2x3 グリッドにしていたため削除 */
